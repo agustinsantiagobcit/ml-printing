@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://altiuz.cl/reports/schemas" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://altiuz.cl/reports/definitions" targetNamespace="http://altiuz.cl/reports/definitions">
+  <wsdl:types>
+      <xs:schema xmlns:reports="http://altiuz.cl/reports/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 elementFormDefault="qualified" targetNamespace="http://altiuz.cl/reports/schemas">
+	<xs:element name="QueryRequest">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="context" type="xs:string"/>
+				<xs:element name="operation">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="DOC_COUNT"/>
+							<xs:enumeration value="DOC_HIT_LIST"/>
+							<xs:enumeration value="XML"/>
+							<xs:enumeration value="XSL"/>
+							<xs:enumeration value="TXT"/>
+							<xs:enumeration value="PDF"/>
+							<xs:enumeration value="TXT_BY_ID"/>
+							<xs:enumeration value="XML_BY_ID"/>
+							<xs:enumeration value="PDF_BY_ID"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="parameters" type="reports:parameters"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="parameters">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="parameter" type="reports:parameter"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="parameter">
+		<xs:sequence>
+			<xs:element name="field" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+			<xs:element minOccurs="0" name="value2" type="xs:string"/>
+			<xs:element minOccurs="0" name="operator">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="8"/>
+						<xs:enumeration value="16"/>
+						<xs:enumeration value="32"/>
+						<xs:enumeration value="64"/>
+						<xs:enumeration value="128"/>
+						<xs:enumeration value="256"/>
+						<xs:enumeration value="512"/>
+						<xs:enumeration value="1024"/>
+						<xs:enumeration value="2048"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="QueryResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="return" type="xs:base64Binary"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="QueryResponse">
+    <wsdl:part element="sch:QueryResponse" name="QueryResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="QueryRequest">
+    <wsdl:part element="sch:QueryRequest" name="QueryRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WorkerQuery">
+    <wsdl:operation name="Query">
+      <wsdl:input message="tns:QueryRequest" name="QueryRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:QueryResponse" name="QueryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorkerQuerySoap11" type="tns:WorkerQuery">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Query">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="QueryRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="QueryResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WorkerQueryService">
+    <wsdl:port binding="tns:WorkerQuerySoap11" name="WorkerQuerySoap11">
+      <soap:address location="/ws/workerServices"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

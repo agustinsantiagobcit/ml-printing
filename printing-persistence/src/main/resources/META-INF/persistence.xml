@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="SAAMPersistenceUnit">
+        <provider>net.bull.javamelody.JpaPersistence</provider>
+        <jta-data-source>jdbc/SAAMDS</jta-data-source>
+
+        <class>cl.metlife.printing.domain.DocumentData</class>
+        <class>cl.metlife.printing.domain.Document</class>
+        <class>cl.metlife.printing.domain.DocumentStatus</class>
+        <class>cl.metlife.printing.domain.PrintStatus</class>
+        <class>cl.metlife.printing.domain.Print</class>
+        <class>cl.metlife.printing.domain.PrintingProcess</class>
+        <class>cl.metlife.printing.domain.Sponsor</class>
+        <class>cl.metlife.printing.domain.PrintType</class>
+        <class>cl.metlife.printing.domain.AuditLog</class>
+        <class>cl.metlife.printing.domain.AuditLogType</class>
+        <class>cl.metlife.printing.domain.PrintingStep</class>
+        <class>cl.metlife.printing.domain.PrintingMapping</class>
+
+        <class>cl.metlife.saam.domain.AltiuzField</class>
+        <class>cl.metlife.saam.domain.AltiuzMapping</class>
+        <class>cl.metlife.saam.domain.AltiuzStep</class>
+        <class>cl.metlife.saam.domain.AltiuzTemplate</class>
+        <class>cl.metlife.saam.domain.CSVExtraction</class>
+        <class>cl.metlife.saam.domain.CSVOutField</class>
+        <class>cl.metlife.saam.domain.CSVOutStep</class>
+        <class>cl.metlife.saam.domain.EncryptionStep</class>
+        <class>cl.metlife.saam.domain.ExecuteQueryMap</class>
+        <class>cl.metlife.saam.domain.ExecuteQueryStep</class>
+        <class>cl.metlife.saam.domain.ExecutionStatus</class>
+        <class>cl.metlife.saam.domain.Extraction</class>
+        <class>cl.metlife.saam.domain.ExtractionField</class>
+        <class>cl.metlife.saam.domain.ExtractionStep</class>
+        <class>cl.metlife.saam.domain.ExtractionType</class>
+        <class>cl.metlife.saam.domain.ExtraData</class>
+        <class>cl.metlife.saam.domain.FileFetchMapping</class>
+        <class>cl.metlife.saam.domain.FileFetchStep</class>
+        <class>cl.metlife.saam.domain.FileFetchType</class>
+        <class>cl.metlife.saam.domain.FileNetFetchField</class>
+        <class>cl.metlife.saam.domain.FileNetFetchStep</class>
+        <class>cl.metlife.saam.domain.FTPOutStep</class>
+        <class>cl.metlife.saam.domain.LogEntry</class>
+        <class>cl.metlife.saam.domain.LogLevel</class>
+        <class>cl.metlife.saam.domain.MailSendStep</class>
+        <class>cl.metlife.saam.domain.ODField</class>
+        <class>cl.metlife.saam.domain.ODFieldType</class>
+        <class>cl.metlife.saam.domain.ODLoadStep</class>
+        <class>cl.metlife.saam.domain.ODMapping</class>
+        <class>cl.metlife.saam.domain.ODModel</class>
+        <class>cl.metlife.saam.domain.Process</class>
+        <class>cl.metlife.saam.domain.ProcessCallStep</class>
+        <class>cl.metlife.saam.domain.ProcessExecution</class>
+        <class>cl.metlife.saam.domain.ProcessStartType</class>
+        <class>cl.metlife.saam.domain.QueryParameter</class>
+        <class>cl.metlife.saam.domain.SharedFolderStep</class>
+        <class>cl.metlife.saam.domain.SMSField</class>
+        <class>cl.metlife.saam.domain.SMSSendStep</class>
+        <class>cl.metlife.saam.domain.SQLExtraction</class>
+        <class>cl.metlife.saam.domain.Step</class>
+        <class>cl.metlife.saam.domain.StepType</class>
+        <class>cl.metlife.saam.domain.SubExtraction</class>
+        <class>cl.metlife.saam.domain.SubExtractionMapping</class>
+        <class>cl.metlife.saam.domain.TemplateGenerationStep</class>
+        <class>cl.metlife.saam.domain.TemplateMapping</class>
+
+        <class>cl.metlife.saam.domain.templates.ListItem</class>
+        <class>cl.metlife.saam.domain.templates.TableCell</class>
+        <class>cl.metlife.saam.domain.templates.TableColumn</class>
+        <class>cl.metlife.saam.domain.templates.TableRow</class>
+        <class>cl.metlife.saam.domain.templates.Image</class>
+        <class>cl.metlife.saam.domain.templates.ListElement</class>
+        <class>cl.metlife.saam.domain.templates.ListType</class>
+        <class>cl.metlife.saam.domain.templates.Paragraph</class>
+        <class>cl.metlife.saam.domain.templates.TemplateElement</class>
+        <class>cl.metlife.saam.domain.templates.Table</class>
+        <class>cl.metlife.saam.domain.templates.Title</class>
+        <class>cl.metlife.saam.domain.templates.Parameter</class>
+        <class>cl.metlife.saam.domain.templates.Template</class>
+        <class>cl.metlife.saam.domain.templates.ElementType</class>
+        <class>cl.metlife.saam.domain.templates.SignatureDouble</class>
+        <class>cl.metlife.saam.domain.templates.Signature</class>
+        <class>cl.metlife.saam.domain.templates.Cuadro</class>
+        <class>cl.metlife.saam.domain.templates.CaratulaVidaConTabla</class>
+        <class>cl.metlife.saam.domain.templates.CaratulaVida</class>
+        <class>cl.metlife.saam.domain.templates.CaratulaSalud</class>
+        <class>cl.metlife.saam.domain.templates.DynamicTable</class>
+        <class>cl.metlife.saam.domain.templates.PageBreak</class>
+
+        <class>cl.blueprintsit.framework.domain.User</class>
+        <class>cl.blueprintsit.framework.domain.Group</class>
+        <class>cl.blueprintsit.framework.domain.Configuration</class>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property name="openjpa.Log" value="DefaultLevel=TRACE, Runtime=INFO, Tool=INFO, SQL=TRACE"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="DocServicePU">
+        <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+        <jta-data-source>docDS</jta-data-source>
+
+        <class>cl.metlife.documentsender.domain.ContentEntity</class>
+        <class>cl.metlife.documentsender.domain.DocumentEntity</class>
+        <class>cl.metlife.documentsender.domain.LotEntity</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property name="openjpa.TransactionMode" value="local"/>
+            <property name="openjpa.ConnectionFactoryMode" value="local"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

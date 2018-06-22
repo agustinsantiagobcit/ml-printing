@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.Table" required="true" />
+    <composite:attribute name="index" type="java.lang.String" required="true" />
+</composite:interface>
+<composite:implementation>
+
+    <p:outputPanel deferred="true" deferredMode="load" id="panelcilloderefTabla">
+    <p:dataTable id="outputTable" var="rowElement" rowIndexVar="rowNumber" styleClass="#{(empty cc.attrs.element.title)?'hide-table-header':''} out-table"
+                 value="#{cc.attrs.element.rows}" >
+
+        <f:facet name="header"  >
+                <h:outputText value="#{cc.attrs.element.title}" rendered="#{not empty cc.attrs.element.title}"/>
+        </f:facet>
+
+        <p:columns var="column" columnIndexVar="columnNumber" value="#{cc.attrs.element.columns}" >
+            <f:facet name="header">
+                <h:outputText value="#{column.name}"  />
+            </f:facet>
+            <h:outputText value="#{rowElement.cells[columnNumber].texto}" />
+        </p:columns>
+    </p:dataTable>
+    </p:outputPanel>
+
+
+</composite:implementation>
+</html>

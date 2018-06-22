@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.SignatureDouble" required="true"/>
+    <composite:attribute name="index" type="java.lang.Integer" required="true"/>
+</composite:interface>
+<composite:implementation>
+
+    <p:panelGrid columns="2">
+        <p:outputPanel>
+            <h:graphicImage value="data:#{cc.attrs.element.contentType1};base64,#{cc.attrs.element.image1}"
+                            style="max-width: 500px; max-height: 300px;" rendered="#{not empty cc.attrs.element.image1}"/>
+            <p:graphicImage name="images/no_image.png" library="rio-layout" rendered="#{empty cc.attrs.element.image1}" style="width: 105px;border: 3px dashed #ddd;"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <h:graphicImage value="data:#{cc.attrs.element.contentType2};base64,#{cc.attrs.element.image2}"
+                            style="max-width: 500px; max-height: 300px;" rendered="#{not empty cc.attrs.element.image2}"/>
+            <p:graphicImage name="images/no_image.png" library="rio-layout" rendered="#{empty cc.attrs.element.image2}" style="width: 105px;border: 3px dashed #ddd;"/>
+        </p:outputPanel>
+
+        <p:outputPanel>
+            <h:outputText styleClass="templateTitle" value="#{cc.attrs.element.name1}"
+                          rendered="#{not empty cc.attrs.element.name1}" escape="false"/>
+            <h:outputText styleClass="templateTitle" value="Ingrese nombre.."
+                          rendered="#{empty cc.attrs.element.name1}"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <h:outputText styleClass="templateTitle" value="#{cc.attrs.element.name2}"
+                          rendered="#{not empty cc.attrs.element.name2}" escape="false"/>
+            <h:outputText styleClass="templateTitle" value="Ingrese nombre.."
+                          rendered="#{empty cc.attrs.element.name2}"/>
+        </p:outputPanel>
+
+        <p:outputPanel>
+            <h:outputText styleClass="templateTitle" value="#{cc.attrs.element.position1}"
+                          rendered="#{not empty cc.attrs.element.position1}" escape="false"/>
+            <h:outputText styleClass="templateTitle" value="Ingrese cargo.."
+                          rendered="#{empty cc.attrs.element.position1}"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <h:outputText styleClass="templateTitle" value="#{cc.attrs.element.position2}"
+                          rendered="#{not empty cc.attrs.element.position2}" escape="false"/>
+            <h:outputText styleClass="templateTitle" value="Ingrese cargo.."
+                          rendered="#{empty cc.attrs.element.position2}"/>
+        </p:outputPanel>
+
+        <p:outputPanel>
+            <h:outputText styleClass="templateTitle" value="#{cc.attrs.element.institution1}"
+                          rendered="#{not empty cc.attrs.element.institution1}" escape="false"/>
+            <h:outputText styleClass="templateTitle" value="Ingrese institución.."
+                          rendered="#{empty cc.attrs.element.institution1}"/>
+        </p:outputPanel>
+        <p:outputPanel>
+            <h:outputText styleClass="templateTitle" value="#{cc.attrs.element.institution2}"
+                          rendered="#{not empty cc.attrs.element.institution2}" escape="false"/>
+            <h:outputText styleClass="templateTitle" value="Ingrese institución.."
+                          rendered="#{empty cc.attrs.element.institution2}"/>
+        </p:outputPanel>
+    </p:panelGrid>
+
+
+</composite:implementation>
+</html>

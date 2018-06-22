@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="SAAM QA" uuid="b0d788a2-75d4-4735-a5e2-b0ec6abd55fe">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="@MLFTEST01" uuid="b17daa33-c337-4751-bd64-709c7fa146de">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="DocSender Local" uuid="5031dee1-9aec-4a4d-8b35-af654b37137b">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+  </component>
+</project>

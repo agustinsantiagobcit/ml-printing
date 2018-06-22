@@ -1,0 +1,188 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="breadcrumb">
+        <div class="Container100">
+            <div class="ContainerIndent" style="padding-bottom: 0px;">
+                <p:breadCrumb styleClass="Card ShadowEffect" >
+                    <p:menuitem value="Inicio" url="/views/home.xhtml" />
+                    <p:menuitem value="Administración de Usuarios" url="/views/users/users.xhtml" />
+                </p:breadCrumb>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <style type="text/css">
+            .ui-panelgrid thead tr td, .ui-panelgrid tfoot tr td {
+                color: #fbfcfd !important;
+                background-color: #0191da !important;
+            }
+
+            thead#grupos_head tr th {
+                background-color: #0191da !important;
+                color: white !important;
+                padding: 0px 0px !important;
+            }
+            tbody#grupos_data tr td {
+                border: 0px !important;
+            }
+        </style>
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect  ">
+                    <div class="Container100">
+                        <div class="ContainerIndent">
+
+                            <h:form id="form" prependId="false">
+
+                                <p:growl id="globalMessage" showDetail="true" showSummary="true"/>
+
+                                <p:dataTable id="singleDT" var="user" value="#{usersBean.allUsers}" rowKey="#{user.username}" styleClass="users"
+                                             rows="30" paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             emptyMessage="No hay usuarios en la Base de Datos" reflow="true" paginatorPosition="bottom">
+
+                                    <p:ajax event="rowSelect" update=":form:user-detail" oncomplete="PF('userDialog').show()" />
+
+                                    <f:facet name="header">
+                                        <p:button value="Nuevo usuario" icon="fa fa-plus-circle" iconPos="left" outcome="userEdit" styleClass="White GreenButton" />
+                                    </f:facet>
+
+                                    <p:column headerText="Nombre de Usuario" sortBy="#{user.username}" filterable="true" filterBy="#{user.username}">
+                                        <h:outputText value="#{user.username}" />
+                                    </p:column>
+                                    
+                                    <p:column headerText="Email" sortBy="#{user.email}"  filterable="true" filterBy="#{user.email}">
+                                        <h:outputText value="#{user.email}" />
+                                    </p:column>
+
+
+                                    <p:column headerText="Nombre" sortBy="#{user.name}" filterable="true" filterBy="#{user.name}">
+                                        <h:outputText value="#{user.name}" />
+                                    </p:column>
+
+
+                                    <p:column headerText="Rut" sortBy="#{user.rut}">
+                                        <h:outputText value="#{user.rut}" />
+                                    </p:column>
+
+
+                                    <p:column headerText="Ultimo Ingreso" sortBy="#{user.lastLogin}">
+                                        <h:outputText value="#{user.lastLogin}" />
+                                    </p:column>
+
+
+                                    <p:column headerText="Acceso" sortBy="#{user.locked}">
+                                        <h:outputText value="Desbloqueado" rendered="#{not user.locked}" />
+                                        <h:outputText value="Bloqueado" rendered="#{user.locked}" />
+                                    </p:column>
+
+                                    <p:column headerText="Fecha Creacion" sortBy="#{user.creationDate}">
+                                        <h:outputText value="#{user.creationDate}" />
+                                    </p:column>
+
+         
+
+                                    <p:column headerText="Acción" width="85">
+                                        <div style="text-align: center;">
+
+                                            <p:commandButton id="ver" icon="fa fa-eye" action="#{usersBean.setSelectedItem(user)}" update=":form:user-detail" oncomplete="PF('userDialog').show()" style="margin-top: 5px;margin-bottom: 5px;" styleClass="Black GrayButton" process="@this"/>
+                                            <p:button id="editar" icon="fa fa-edit" outcome="userEdit">
+                                                <f:param name="username" value="#{user.username}" />
+                                            </p:button>
+
+                                            <p:tooltip id="tool1" for="ver" value="Ver" trackMouse="true" />
+                                            <p:tooltip id="tool2" for="editar" value="Editar" trackMouse="true" />
+                                        </div>
+                                    </p:column>
+                                    
+
+                                </p:dataTable>
+
+
+                                <p:dialog height="300" width="500" header="Detalles del Usuario" widgetVar="userDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="true" responsive="true">
+
+                                    <h:panelGroup layout="block" id="user-detail" styleClass="Container100">
+
+                                        <p:panelGrid columns="2" styleClass="Wid100" rendered="#{usersBean.selectedItem != null}">
+                                            <f:facet name="header">
+                                                Datos Personales
+                                            </f:facet>
+                                            <h:outputText value="Nombre de Usuario" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.username}"/>
+
+                                            <h:outputText value="Nombre" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.name}"/>
+
+                                            <h:outputText value="RUT" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.rut}"/>
+
+                                            <h:outputText value="Email" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.email}" />
+
+                                            <h:outputText value="Fecha de creación" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.creationDate}" />
+
+                                        </p:panelGrid>
+
+                                        <p:dataTable id="grupos"
+                                                     var="group"
+                                                     value="#{usersBean.selectedItem.groups}"
+                                                     emptyMessage="Usuario no tiene Grupos asignados"
+                                                     reflow="true">
+                                            <p:columnGroup type="header">
+                                                <p:row>
+                                                    <p:column colspan="2" headerText="Grupos"/>
+                                                </p:row>
+                                            </p:columnGroup>
+                                            <p:column styleClass="BoldGray FontBold">
+                                                #{group.name}
+                                            </p:column>
+                                            <p:column>
+                                                #{group.description}
+                                            </p:column>
+                                        </p:dataTable>
+
+                                        <p:separator />
+
+                                        <p:panelGrid columns="2" styleClass="Wid100" rendered="#{usersBean.selectedItem != null}">
+                                            <f:facet name="header">
+                                                Datos De acceso
+                                            </f:facet>
+                                            <h:outputText value="Fecha Ultimo acceso" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.lastLogin}">
+                                                <f:convertDateTime type="date" pattern="dd-MM-yyyy hh:mm"/>
+                                            </h:outputText>
+
+                                            <h:outputText value="Intentos fallidos de ingreso" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.failedLoginAttempts}" />
+
+                                            <h:outputText value="Fecha Ultimo cambio de contraseña" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.lastPasswordChange}">
+                                                <f:convertDateTime type="date" pattern="dd-MM-yyyy hh:mm"/>
+                                            </h:outputText>
+
+                                            <h:outputText value="Bloqueado" style="font-weight: bold"/>
+                                            <h:outputText value=": #{usersBean.selectedItem.locked?'Si':'No'}"/>
+
+                                        </p:panelGrid>
+
+                                    </h:panelGroup>
+                                </p:dialog>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

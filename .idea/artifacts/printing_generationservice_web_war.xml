@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="printing-generationservice-web:war">
+    <output-path>$PROJECT_DIR$/printing-generationservice-web/target</output-path>
+    <root id="archive" name="printing-generationservice-web-1.0.war">
+      <element id="artifact" artifact-name="printing-generationservice-web:war exploded" />
+    </root>
+  </artifact>
+</component>

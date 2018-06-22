@@ -1,0 +1,5 @@
+
+Isquid:S2160"+Override the "equals" method in this class.(ƒ–Ü¥8‹­’€À,
+"squid:ClassVariableVisibilityCheckq"cMake processExecutionRuntime a static final constant or non-public and provide accessors if needed.(ÈôŠßúÿÿÿÿ8‹­’€À,
+[squid:UselessImportCheck	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8‹­’€À,
+\squid:S1948q"9Make "processExecutionRuntime" transient or serializable.(ÈôŠßúÿÿÿÿ8‹­’€À,

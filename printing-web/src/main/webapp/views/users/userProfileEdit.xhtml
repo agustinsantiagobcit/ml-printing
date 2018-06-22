@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{userEditBean.initForLogedUser(authenticationBean.loggedUser)}" />
+        <f:event type="preRenderView" listener="#{userEditBean.init}" />
+    </f:metadata>
+
+    <ui:define name="breadcrumb">
+        <div class="Container100">
+        <div class="ContainerIndent" style="padding-bottom: 0px;">
+        <p:breadCrumb styleClass="Card ShadowEffect" >
+            <p:menuitem value="Inicio" url="/views/home.xhtml" />
+            <p:menuitem value="Perfil de Usuario" url="/views/users/userProfile.xhtml" />
+            <p:menuitem value="Editar Perfil" url="#"/>
+        </p:breadCrumb>
+        </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect  ">
+                    <h:form id="mainForm">
+
+                        <p:growl showDetail="true" showSummary="true"/>
+
+
+                        <p:panelGrid columns="1" columnClasses="ui-grid-col-12" layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:messages id="messages" autoUpdate="true" showDetail="true" globalOnly="true"/>
+
+                            <p:outputPanel>
+
+
+                                <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
+
+                                    <p:outputLabel for="input-user-username" value="Username" styleClass="Wid20"  />
+                                    <h:outputText id="input-user-username" value="#{userEditBean.editItem.username}" styleClass="Wid90"  required="true"/>
+                                    <p:message id="message-user-username" for="input-user-username"  />
+
+                                    <p:outputLabel for="input-user-name" value="Nombre" styleClass="Wid20"  />
+                                    <p:inputText id="input-user-name" value="#{userEditBean.editItem.name}" styleClass="Wid90"  required="true"/>
+                                    <p:message id="message-user-name" for="input-user-name" />
+
+                                    <p:outputLabel for="input-user-rut" value="RUT" style="font-weight: bold" styleClass="Wid20 Label" />
+                                    <p:inputText id="input-user-rut" value="#{userEditBean.editItem.rut}" styleClass="Wid90" maxlength="15">
+                                        <p:ajax event="blur" listener="#{userEditBean.formatRut}" update="@this" process="@this" />
+                                    </p:inputText>
+                                    <p:message id="message-user-rut" for="input-user-rut" />
+
+                                    <p:outputLabel for="input-user-email" value="Email" style="font-weight: bold" styleClass="Wid20" />
+                                    <p:inputText id="input-user-email" value="#{userEditBean.editItem.email}" styleClass="Wid90" />
+                                    <p:message id="message-user-email" for="input-user-email" />
+
+                                    <p:outputLabel for="input-user-pass" value="Password" style="font-weight: bold" styleClass="Wid20" />
+                                    <p:password id="input-user-pass" value="#{userEditBean.password}" styleClass="Wid90" required="true" redisplay="true" match="input-user-pass2" feedback="true"
+                                                promptLabel="Ingrese una Contraseña" weakLabel="Débil"
+                                                goodLabel="Buena" strongLabel="Segura"/>
+                                    <p:message id="message-user-pass" for="input-user-pass" />
+
+                                    <p:outputLabel for="input-user-pass2" value="Confirmar Password" style="font-weight: bold" styleClass="Wid20" />
+                                    <p:password id="input-user-pass2" value="#{userEditBean.password}" styleClass="Wid90" required="true"  redisplay="true"/>
+                                    <p:message id="message-user-pass2" for="input-user-pass2" />
+
+                                </p:panelGrid>
+
+                            </p:outputPanel>
+
+                            <p:outputPanel>
+
+                                <p:panelGrid columns="4"  layout="grid" styleClass="ui-panelgrid-blank">
+
+                                        <p:commandButton value="Guardar" icon="fa fa-check" action="#{userEditBean.save}" styleClass="ui-priority-primary" update="mainForm"/>
+
+                                        <p:commandButton value="Cancelar" icon="fa fa-undo" action="users" styleClass="ui-priority-primary"  process="@this" >
+                                            <p:confirm header="Confirmar Acción" message="¿Desea deshacer los cambios realizados?" icon="ui-icon-alert" />
+                                        </p:commandButton>
+                                </p:panelGrid>
+                            </p:outputPanel>
+
+                        </p:panelGrid>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

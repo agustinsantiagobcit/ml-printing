@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.7.0  -->
+<!-- 2018-03-20T17:13:23 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BPFWK_Printing_Generic_Template" language="groovy" pageWidth="612" pageHeight="792" whenNoDataType="BlankPage" columnWidth="412" leftMargin="100" rightMargin="100" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="d6398e2b-5970-4743-886d-4e82ed1ba862">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="XML Printing"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<import value="org.apache.commons.codec.binary.Base64"/>
+	<parameter name="BASE_PATH" class="java.lang.String">
+		<defaultValueExpression><![CDATA["F:\\workspaces\\IdeaProyects\\ml-saam-2.0\\saam-bussiness\\src\\main\\resources\\cl\\metlife\\saam\\printing\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[/BlueprintsPrinting]]>
+	</queryString>
+	<field name="LogoTL" class="java.lang.String">
+		<fieldDescription><![CDATA[//Header/LogoTL]]></fieldDescription>
+	</field>
+	<field name="LogoTR" class="java.lang.String">
+		<fieldDescription><![CDATA[//Header/LogoTR]]></fieldDescription>
+	</field>
+	<field name="LogoBL" class="java.lang.String">
+		<fieldDescription><![CDATA[//Footer/LogoBL]]></fieldDescription>
+	</field>
+	<field name="LogoBR" class="java.lang.String">
+		<fieldDescription><![CDATA[//Footer/LogoBR]]></fieldDescription>
+	</field>
+	<field name="TextTL" class="java.lang.String">
+		<fieldDescription><![CDATA[//Header/TextTL]]></fieldDescription>
+	</field>
+	<field name="TextTR" class="java.lang.String">
+		<fieldDescription><![CDATA[//Header/TextTR]]></fieldDescription>
+	</field>
+	<field name="TextBL" class="java.lang.String">
+		<fieldDescription><![CDATA[//Footer/TextBL]]></fieldDescription>
+	</field>
+	<field name="TextBR" class="java.lang.String">
+		<fieldDescription><![CDATA[//Footer/TextBR]]></fieldDescription>
+	</field>
+	<field name="ElemCount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[count(//Element)]]></fieldDescription>
+	</field>
+	<field name="PageNumberPosition" class="java.lang.String">
+		<fieldDescription><![CDATA[PageNumberPosition]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="-40" y="46" width="70" height="14" uuid="94120587-cca1-4e03-a484-ea7be57cdca3">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<printWhenExpression><![CDATA["TopLeft".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} +" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="30" y="46" width="28" height="14" uuid="f0e98315-da9a-4e76-ba12-17d9a3af3d86">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<printWhenExpression><![CDATA["TopLeft".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Right" vAlign="Top" evaluationTime="Report">
+				<reportElement x="330" y="0" width="145" height="60" uuid="062c19fb-e09b-4aad-8c7e-0372a86b661d">
+					<printWhenExpression><![CDATA[$F{LogoTR} != null && !$F{LogoTR}.isEmpty() && !"null".equals($F{LogoTR})]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[new ByteArrayInputStream(new Base64().decodeBase64($F{LogoTR}.getBytes("UTF-8")))]]></imageExpression>
+			</image>
+			<image hAlign="Left" vAlign="Top" evaluationTime="Report">
+				<reportElement x="-40" y="0" width="145" height="60" uuid="28d1c58c-accb-48af-b05f-09455526709b">
+					<printWhenExpression><![CDATA[$F{LogoTL} != null && !$F{LogoTL}.isEmpty() && !"null".equals($F{LogoTL})]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[new ByteArrayInputStream(new Base64().decodeBase64($F{LogoTL}.getBytes("UTF-8")))]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="-40" y="0" width="515" height="60" uuid="bece569c-6c7b-4328-8225-d8bc3e62face"/>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TextTL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="-40" y="0" width="515" height="60" uuid="011f4b9f-07fb-4e71-acb8-ec2e0af13cfc"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TextTR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="377" y="46" width="70" height="14" uuid="63445a76-67e4-4c62-8a78-fc1a08cbdde6">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA["TopRigth".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} +" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="447" y="46" width="28" height="14" uuid="f30aba85-dae1-4a96-b22d-7e7586353889">
+					<printWhenExpression><![CDATA["TopRigth".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="144" y="46" width="70" height="14" uuid="bacc82b8-b392-4c00-9c3d-1ab53593f5a4">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA["TopCenter".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} +" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="214" y="46" width="28" height="14" uuid="437ff7e9-a046-4bad-8cd7-54862a3ad884">
+					<printWhenExpression><![CDATA["TopCenter".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<subreport isUsingCache="false">
+				<reportElement x="-100" y="1" width="612" height="20" uuid="21dbbd8b-6349-424d-a288-72b70694f338"/>
+				<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//Element")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{BASE_PATH}+"BPFWK_Printing_Generic_Template_Elements.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="64" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="-40" y="4" width="70" height="14" uuid="9c6da3de-06bd-4502-8621-2d0a6a4a3fa3">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA["BottomLeft".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} +" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="30" y="4" width="28" height="14" uuid="e2d01102-19e0-4223-a467-07d3155d30ef">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<printWhenExpression><![CDATA["BottomLeft".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Right" vAlign="Top" evaluationTime="Report">
+				<reportElement x="330" y="4" width="145" height="60" uuid="55f53e5b-2eb9-471f-8ab9-ba42c6a26efe">
+					<printWhenExpression><![CDATA[$F{LogoBR} != null && !$F{LogoBR}.isEmpty() && !"null".equals($F{LogoBR})]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[new ByteArrayInputStream(new Base64().decodeBase64($F{LogoBR}.getBytes("UTF-8")))]]></imageExpression>
+			</image>
+			<image hAlign="Left" vAlign="Top" evaluationTime="Report">
+				<reportElement x="-40" y="4" width="145" height="60" uuid="4b26631a-dc88-44b2-ae0e-350e3b732e81">
+					<printWhenExpression><![CDATA[$F{LogoBL} != null && !$F{LogoBL}.isEmpty() && !"null".equals($F{LogoBL})]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[new ByteArrayInputStream(new Base64().decodeBase64($F{LogoTL}.getBytes("UTF-8")))]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="-40" y="4" width="515" height="60" uuid="7ac827b2-da98-4368-8823-74b86426c471"/>
+				<textElement verticalAlignment="Bottom" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TextBL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="-40" y="4" width="515" height="60" uuid="edb362c6-94c0-42a4-8c67-3c408470b2d8"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TextBR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="377" y="4" width="70" height="14" uuid="ac17de13-77be-4de9-981f-c59ecdb52d59">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA["BottomRigth".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} +" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="447" y="4" width="28" height="14" uuid="bb9630cb-bd9a-45e1-b744-35c448638d45">
+					<printWhenExpression><![CDATA["BottomRigth".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="144" y="4" width="70" height="14" uuid="dc32c284-51e0-4c43-9773-6b2d3b652970">
+					<printWhenExpression><![CDATA["BottomCenter".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} +" de "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="214" y="4" width="28" height="14" uuid="20b8e671-c852-4216-9416-9736f4c739a2">
+					<printWhenExpression><![CDATA["BottomCenter".equals($F{PageNumberPosition})]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

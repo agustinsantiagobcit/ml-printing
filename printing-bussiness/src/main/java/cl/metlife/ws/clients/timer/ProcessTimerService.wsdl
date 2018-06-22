@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ProcessTimerService" targetNamespace="http://printing.metlife.cl/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://printing.metlife.cl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://printing.metlife.cl/" schemaLocation="ProcessTimerService_schema1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="getTimer">
+    <part name="parameters" element="tns:getTimer">
+    </part>
+  </message>
+  <message name="setTimerResponse">
+    <part name="parameters" element="tns:setTimerResponse">
+    </part>
+  </message>
+  <message name="setTimer">
+    <part name="parameters" element="tns:setTimer">
+    </part>
+  </message>
+  <message name="clearTimer">
+    <part name="parameters" element="tns:clearTimer">
+    </part>
+  </message>
+  <message name="getNextExecutionForProcessResponse">
+    <part name="parameters" element="tns:getNextExecutionForProcessResponse">
+    </part>
+  </message>
+  <message name="clearTimerResponse">
+    <part name="parameters" element="tns:clearTimerResponse">
+    </part>
+  </message>
+  <message name="getNextExecutionForProcess">
+    <part name="parameters" element="tns:getNextExecutionForProcess">
+    </part>
+  </message>
+  <message name="getTimerResponse">
+    <part name="parameters" element="tns:getTimerResponse">
+    </part>
+  </message>
+  <portType name="ProcessTimer">
+    <operation name="getTimer">
+      <input message="tns:getTimer" wsam:Action="http://printing.metlife.cl/ProcessTimer/getTimerRequest">
+    </input>
+      <output message="tns:getTimerResponse" wsam:Action="http://printing.metlife.cl/ProcessTimer/getTimerResponse">
+    </output>
+    </operation>
+    <operation name="getNextExecutionForProcess">
+      <input message="tns:getNextExecutionForProcess" wsam:Action="http://printing.metlife.cl/ProcessTimer/getNextExecutionForProcessRequest">
+    </input>
+      <output message="tns:getNextExecutionForProcessResponse" wsam:Action="http://printing.metlife.cl/ProcessTimer/getNextExecutionForProcessResponse">
+    </output>
+    </operation>
+    <operation name="setTimer">
+      <input message="tns:setTimer" wsam:Action="http://printing.metlife.cl/ProcessTimer/setTimerRequest">
+    </input>
+      <output message="tns:setTimerResponse" wsam:Action="http://printing.metlife.cl/ProcessTimer/setTimerResponse">
+    </output>
+    </operation>
+    <operation name="clearTimer">
+      <input message="tns:clearTimer" wsam:Action="http://printing.metlife.cl/ProcessTimer/clearTimerRequest">
+    </input>
+      <output message="tns:clearTimerResponse" wsam:Action="http://printing.metlife.cl/ProcessTimer/clearTimerResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="ProcessTimerPortBinding" type="tns:ProcessTimer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getTimer">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getNextExecutionForProcess">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="setTimer">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="clearTimer">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ProcessTimerService">
+    <port name="ProcessTimerPort" binding="tns:ProcessTimerPortBinding">
+      <soap:address location="http://mlfsoaqat01.alico.corp:9080/saam-services/ProcessTimerService"/>
+    </port>
+  </service>
+</definitions>

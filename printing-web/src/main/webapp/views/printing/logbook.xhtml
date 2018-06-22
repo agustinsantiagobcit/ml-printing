@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+
+                <h:form id="form" prependId="false">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="#" />
+                        <p:menuitem value="Administrador Printing" url="#" />
+                        <p:menuitem value="Bitácora" url="#" />
+                    </p:breadCrumb>
+
+                    <div class="Container100 Responsive100">
+                        <div class="Card ShadowEffect" style="margin-top:20px">
+                            <p:dataTable id="informacionDT" var="execution" widgetVar="informacionDTVar"
+                                         value="#{logbookBean.queryResult}" emptyMessage="No hay datos disponibles. Para consultar, llene los campos del formulario y presione Buscar." paginator="true" rows="100"
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         paginatorPosition="bottom" scrollable="true" resizableColumns="true">
+
+                                <p:column headerText="#" sortBy="#{execution.id}" width="30">
+                                    <h:outputText value="#{execution.id}"/>
+                                </p:column>
+
+                                <p:column headerText="Proceso" filterBy="#{execution.process.name}" filterMatchMode="contains">
+                                    <h:outputText value="#{execution.process.name}"/>
+                                </p:column>
+
+                                <p:column headerText="Sponsor" filterBy="#{execution.process.sponsor.name}" filterMatchMode="contains">
+                                    <h:outputText value="#{execution.process.sponsor.name}"/>
+                                </p:column>
+
+                                <p:column headerText="Poliza" filterBy="#{execution.process.policyCode}">
+                                    <h:outputText value="#{execution.process.policyCode}"/>
+                                </p:column>
+
+                                <p:column headerText="Documentos Emitidos" width="70">
+                                    <h:outputText value="#{execution.issuedDocuments}"/>
+                                </p:column>
+
+                                <p:column headerText="Documentos Generados" width="70">
+                                    <h:outputText value="#{execution.generatedDocuments}"/>
+                                </p:column>
+
+                                <p:column headerText="Documentos Enviados" width="70">
+                                    <h:outputText value="#{execution.sentDocuments}"/>
+                                </p:column>
+
+                                <p:column headerText="Fecha Emisión">
+                                    <h:outputText value="#{execution.startDate}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Estado" filterBy="#{execution.executionStatus.name}">
+                                    <h:outputText value="#{execution.executionStatus.name}"/>
+                                </p:column>
+
+                                <p:column headerText="%">
+                                    <h:outputText value="#{execution.executionStatus.percentaje}"/>
+                                </p:column>
+
+                            </p:dataTable>
+                        </div>
+                    </div>
+
+                </h:form>
+            </div>
+        </div>
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes GreenButton" icon="fa fa-check White" style="float:left"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no RedButton" icon="fa fa-close White" style="float:right"/>
+        </p:confirmDialog>
+
+    </ui:define>
+
+</ui:composition>

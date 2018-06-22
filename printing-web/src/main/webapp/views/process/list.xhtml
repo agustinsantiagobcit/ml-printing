@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+
+                <h:form id="form" prependId="false">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="#" />
+                        <p:menuitem value="Administrador Printing" url="#" />
+                        <p:menuitem value="Procesos" url="#" />
+                    </p:breadCrumb>
+
+                    <div class="Container100 Responsive100">
+                        <div class="Card ShadowEffect" style="margin-top:20px">
+                            <p:dataTable id="informacionDT" var="proceso" widgetVar="informacionDTVar"
+                                         value="#{processBean.allProcesses}" emptyMessage="No hay datos disponibles" paginator="true" rows="100"
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         paginatorPosition="bottom" scrollable="true" resizableColumns="true">
+
+                                <p:column headerText="#" sortBy="#{proceso.id}" width="30">
+                                    <h:outputText value="#{proceso.id}"/>
+                                </p:column>
+
+                                <p:column headerText="Proceso" filterBy="#{proceso.name}" filterMatchMode="contains" >
+                                    <h:outputText value="#{proceso.name}"/>
+                                </p:column>
+
+                                <p:column headerText="Descripcion" filterBy="#{proceso.description}" filterMatchMode="contains">
+                                    <h:outputText value="#{proceso.description}"/>
+                                </p:column>
+                                <p:column headerText="policyCode" filterBy="#{proceso.policyCode}" filterMatchMode="contains">
+                                    <h:outputText value="#{proceso.policyCode}"/>
+                                </p:column>
+
+                                <p:column headerText="Sponsor" filterBy="#{proceso.sponsor.name}" filterMatchMode="contains" width="200" >
+                                    <h:outputText value="#{proceso.sponsor.name}"/>
+                                </p:column>
+
+                                <p:column headerText="Proxima Ejecucion"  >
+                                    <h:outputText value="#{processBean.getNextExecution(proceso)}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Acciones" width="250">
+                                    <p:commandButton id="initProcess" icon="fa fa-play" value="Iniciar" action="#{processBean.initProcess(proceso)}" style="margin-top: 5px;margin-bottom: 5px;" styleClass="Black GreenButton" />
+                                    <p:button id="setTimer"  style="margin-top: 5px;margin-bottom: 5px;" styleClass="Black" icon="fa fa-calendar" value="Calendarizar"  outcome="programacion">
+                                        <f:param name="processId" value="#{proceso.saamProcessId}" />
+                                    </p:button>
+                                 </p:column>
+
+                            </p:dataTable>
+                        </div>
+                    </div>
+
+                </h:form>
+            </div>
+        </div>
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes GreenButton" icon="fa fa-check White" style="float:left"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no RedButton" icon="fa fa-close White" style="float:right"/>
+        </p:confirmDialog>
+
+    </ui:define>
+
+</ui:composition>

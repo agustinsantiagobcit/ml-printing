@@ -1,0 +1,6 @@
+
+…"squid:ClassVariableVisibilityCheck,"XMake documentList a static final constant or non-public and provide accessors if needed.(Ø
+csquid:S2184q"@Cast one of the operands of this addition operation to a "long".(Û£‹«üÿÿÿÿ8¥Ş–À,
+msquid:UselessImportCheck"DRemove this unused import 'cl.metlife.saam.domain.ProcessExecution'.(»Ì„Ñùÿÿÿÿ
+Xsquid:S1075›"ARefactor your code to get this URI from a customizable parameter.(åù
+?squid:S1948,")Make "documentList" private or transient.(Ø

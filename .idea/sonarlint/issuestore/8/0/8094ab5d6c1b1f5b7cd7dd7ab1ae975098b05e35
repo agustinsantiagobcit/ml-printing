@@ -1,0 +1,6 @@
+
+Asquid:S1068"*Remove this unused "LOGGER" private field.(ê¤‡ƒ
+ysquid:S1488m"]Immediately return this expression instead of assigning it to the temporary variable "bytes".(ÕÀ¤ıÿÿÿÿ
+Zsquid:S00107Œ"<Method has 9 parameters, which is greater than 7 authorized.(ı Œúÿÿÿÿ
+Gsquid:S11721"+Remove this unused method parameter "user".(ŞÍ£°øÿÿÿÿ
+Psquid:S1172Œ"3Remove this unused method parameter "parameterMap".(ı Œúÿÿÿÿ

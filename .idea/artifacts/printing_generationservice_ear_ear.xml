@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="printing-generationservice-ear:ear">
+    <output-path>$PROJECT_DIR$/printing-generationservice-ear/target</output-path>
+    <root id="archive" name="printing-generationservice-ear-1.0.ear">
+      <element id="artifact" artifact-name="printing-generationservice-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

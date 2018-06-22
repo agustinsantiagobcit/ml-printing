@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.Image" required="true"/>
+    <composite:attribute name="index" type="java.lang.String" required="true"/>
+</composite:interface>
+<composite:implementation>
+
+
+    <p:fileUpload id="image-upload" fileUploadListener="#{cc.attrs.element.handleFileUpload}" mode="advanced"
+                  dragDropSupport="true" auto="true"
+                  label="Subir Imagen" fileLimitMessage="Limite de tamaño 10Mb" invalidFileMessage="Archivo invalido"
+                  uploadLabel="Subir"
+                  sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                  oncomplete="PF('inplace3_#{cc.attrs.index}').save()"/>
+
+    <p:selectOneMenu value="#{cc.attrs.element.tamanioY}">
+        <f:selectItem noSelectionOption="true" itemLabel="Seleccione la altura"/>
+        <f:selectItem itemLabel="100px" itemValue="100"/>
+        <f:selectItem itemLabel="200px" itemValue="200"/>
+        <f:selectItem itemLabel="300px" itemValue="300"/>
+    </p:selectOneMenu>
+
+
+</composite:implementation>
+</html>

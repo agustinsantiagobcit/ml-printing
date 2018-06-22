@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="OnDemandLoaderService" targetNamespace="http://ws.ondemand.metlife.cl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://ws.ondemand.metlife.cl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://ws.ondemand.metlife.cl/" schemaLocation="OnDemandLoaderService_schema1.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="loadData">
+    <part name="parameters" element="tns:loadData">
+    </part>
+  </message>
+  <message name="loadDataResponse">
+    <part name="parameters" element="tns:loadDataResponse">
+    </part>
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception">
+    </part>
+  </message>
+  <portType name="OnDemandLoader">
+    <operation name="loadData">
+      <input message="tns:loadData" wsam:Action="http://ws.ondemand.metlife.cl/OnDemandLoader/loadDataRequest">
+    </input>
+      <output message="tns:loadDataResponse" wsam:Action="http://ws.ondemand.metlife.cl/OnDemandLoader/loadDataResponse">
+    </output>
+      <fault name="Exception" message="tns:Exception" wsam:Action="http://ws.ondemand.metlife.cl/OnDemandLoader/loadData/Fault/Exception">
+    </fault>
+    </operation>
+  </portType>
+  <binding name="OnDemandLoaderPortBinding" type="tns:OnDemandLoader">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="loadData">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="Exception">
+        <soap:fault name="Exception" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="OnDemandLoaderService">
+    <port name="OnDemandLoaderPort" binding="tns:OnDemandLoaderPortBinding">
+      <soap:address location="http://mlfdesibmarp:9080/OnDemandLoader/OnDemandLoaderService"/>
+    </port>
+  </service>
+</definitions>

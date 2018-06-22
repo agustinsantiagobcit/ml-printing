@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+
+                <h:form id="form" prependId="false">
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="#" />
+                        <p:menuitem value="Administrador Printing" url="#" />
+                        <p:menuitem value="Auditoría" url="#" />
+                    </p:breadCrumb>
+
+                    <div class="Container100 Responsive100">
+                        <div class="Card ShadowEffect" style="margin-top:20px">
+                            <div class="ContainerIndent">
+
+                            <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                            <div class="payments-search-leftblock">
+                                <div class="input-form">
+                                    <h:outputText value="Fecha Inicio"/>
+                                    <p:calendar value="#{auditBean.dateFrom}" style="float:left;clear:both;min-width:170px" pattern="dd/MM/yyyy"/>
+                                </div>
+
+                                <div class="input-form">
+                                    <h:outputText value="Fecha Fin"/>
+                                    <p:calendar value="#{auditBean.dateTo}" style="float:left;clear:both;min-width:170px" pattern="dd/MM/yyyy"/>
+                                </div>
+                            </div>
+
+                            <div class="payments-search-rightblock">
+                                <div class="input-form" style="width:100px !important;margin-top: 23px;margin-bottom: 11px;">
+                                    <p:commandButton action="#{auditBean.search}" value="Buscar" process="@all" update="form" styleClass="GreenButton Wid90"/>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="Container100 Responsive100">
+                        <div class="Card ShadowEffect" style="margin-top:20px">
+                            <p:dataTable id="informacionDT" var="proceso" widgetVar="informacionDTVar"
+                                         value="#{auditBean.allLogs}" emptyMessage="No hay datos disponibles" paginator="true" rows="100"
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         paginatorPosition="bottom" scrollable="true" resizableColumns="true">
+
+                                <p:column headerText="#" sortBy="#{proceso.id}" width="30">
+                                    <h:outputText value="#{proceso.id}"/>
+                                </p:column>
+
+                                <p:column headerText="Acción" filterBy="#{proceso.type.name}" filterMatchMode="contains" width="150">
+                                    <h:outputText value="#{proceso.type.name}"/>
+                                </p:column>
+
+                                <p:column headerText="Usuario" width="150">
+                                    <h:outputText value="#{proceso.userName}"/>
+                                </p:column>
+
+                                <p:column headerText="Fecha" width="150">
+                                    <h:outputText value="#{proceso.date}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Detalle" filterBy="#{proceso.detail}" filterMatchMode="contains" >
+                                    <h:outputText value="#{proceso.detail}"/>
+                                </p:column>
+
+
+                            </p:dataTable>
+                        </div>
+                    </div>
+
+                </h:form>
+            </div>
+        </div>
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes GreenButton" icon="fa fa-check White" style="float:left"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no RedButton" icon="fa fa-close White" style="float:right"/>
+        </p:confirmDialog>
+
+    </ui:define>
+
+</ui:composition>

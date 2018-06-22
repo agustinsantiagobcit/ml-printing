@@ -1,0 +1,4 @@
+
+Psquid:S1948("4Make "authenticationBean" transient or serializable.(Û‚Áœûÿÿÿÿ
+"squid:ClassVariableVisibilityCheck "TMake dataList a static final constant or non-public and provide accessors if needed.(å¢“
+;squid:S1948 "%Make "dataList" private or transient.(å¢“

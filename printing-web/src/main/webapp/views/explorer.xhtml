@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="title">Test Datasources</ui:define>
+    <ui:define name="viewname">
+        <li><p:link outcome="/explorer">Navegador de Archivos</p:link></li>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="card">
+                    <h1>Navegador Ligero de arcivos</h1>
+
+                    <h:form id="form" prependId="false">
+
+                        <p:fragment id="main">
+
+                            <p:messages id="messages" showDetail="true" closable="true" />
+                            <p:panelGrid columns="3" style="width: 100%">
+                                <p:outputLabel  value="Ruta" for="ruta-input" />
+                                <p:inputText id="ruta-input" value="#{fileExplorerBean.path}" style="width: 100%" />
+
+                                <p:commandButton process="@this,ruta-input" update="main" value="Refrescar" icon="fa fa-recycle">
+                                </p:commandButton>
+                            </p:panelGrid>
+
+                            <p:dataTable id="results" var="file" value="#{fileExplorerBean.pathFiles}" resizableColumns="true" >
+                                <p:column headerText="Dir" width="20">
+                                    <h:panelGroup rendered="#{file.directory}">
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                    </h:panelGroup>
+                                </p:column>
+                                <p:column headerText="Accion" width="120">
+
+                                    <p:commandButton rendered="#{!file.directory}" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);" icon="fa fa-download">
+                                        <p:fileDownload value="#{fileExplorerBean.downloadFile(file)}" />
+                                    </p:commandButton>
+                                    <p:commandButton process="@this" update="main" rendered="#{file.directory}" action="#{fileExplorerBean.setPath(file.absolutePath)}"  value="Ir" icon="fa fa-sign-in">
+                                    </p:commandButton>
+
+                                </p:column>
+                                <p:column headerText="Nombre" width="70%">
+                                   <h:outputText value="#{file.name}" />
+                                </p:column>
+
+                                <p:column headerText="Tamanño" width="100">
+                                    <h:outputText value="#{file.length()}" />
+                                </p:column>
+
+                                <p:column headerText="Ultima Modificación" >
+                                    <h:outputText value="#{file.lastModified()}" >
+                                        <f:convertDateTime type="date" pattern="dd-MM-yyyy hh:mm"/>
+                                    </h:outputText>
+                                </p:column>
+
+
+                            </p:dataTable>
+
+
+
+                        </p:fragment>
+
+
+
+                    </h:form>
+
+                    <br/><br/>
+
+                    <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+
+                        <i class="fa fa-2x fa-circle-o-notch fa-spin ajax-status-icon" aria-hidden="true"></i>
+                    </p:dialog>
+
+                    <script type="text/javascript">
+                        function start() {
+                            PF('statusDialog').show();
+                        }
+
+                        function stop() {
+                            PF('statusDialog').hide();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        
+    </ui:define>
+
+</ui:composition>

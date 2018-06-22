@@ -1,0 +1,32 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pr="http://primefaces.org/rio">
+
+    <div class="Animated05" id="layout-menu-cover">
+        <ul class="layout-menu">
+            <li>
+                <a class="menulink ripplelink">
+                    <i class="icon-round58 Fs40"></i>
+                    <span class="Fs18">#{authenticationBean.loggedUser.username}<i class="icon-downwards Fright Fs20"></i><br /><span class="Fs12 FontRobotoLight">#{authenticationBean.loggedUser.name}</span></span>
+                </a>
+            </li>
+        </ul>
+        <div class="Separator"></div>
+
+        <pr:menu>
+            <p:menuitem id="rm_users" value="Usuarios" icon="fa fa-user" outcome="/views/users/users.xhtml" rendered="#{authenticationBean.logedUserHasGroup('Administrador')}" />
+            <p:menuitem id="rm_plantillas" value="Gestor de Plantillas" icon="fa fa-file-text" outcome="/views/printing/gestor/mantenedorPlantillas.xhtml" rendered="#{authenticationBean.logedUserHasGroup('Administrador') or authenticationBean.logedUserHasGroup('Editor')}"  />
+            <p:menuitem id="rm_reportes" value="Reportes" icon="fa fa-gears" outcome="/views/printing/reports.xhtml" rendered="#{authenticationBean.logedUserHasGroup('Administrador') or authenticationBean.logedUserHasGroup('Ejecutor')}"/>
+            <p:menuitem id="rm_bitacora" value="Bitácora" icon="fa fa-calendar" outcome="/views/printing/logbook.xhtml" rendered="#{authenticationBean.logedUserHasGroup('Administrador') or authenticationBean.logedUserHasGroup('Ejecutor')}"/>
+            <p:menuitem id="rm_cargann" value="Carga NN" icon="fa fa-gears" outcome="/views/printing/excelLoad.xhtml" rendered="#{authenticationBean.logedUserHasGroup('Administrador') or authenticationBean.logedUserHasGroup('Ejecutor')}" />
+            <p:menuitem id="rm_procesos" value="Procesos" icon="fa fa-gears" outcome="/views/process/list.xhtml"  rendered="#{authenticationBean.logedUserHasGroup('Administrador') or authenticationBean.logedUserHasGroup('Ejecutor')}" />
+            <p:menuitem id="rm_auditoria" value="Auditoría" icon="fa fa-gears" outcome="/views/printing/logs.xhtml" rendered="#{authenticationBean.logedUserHasGroup('Administrador')}" />
+        </pr:menu>
+
+    </div>
+
+</ui:composition>

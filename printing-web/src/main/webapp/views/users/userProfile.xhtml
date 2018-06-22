@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{userEditBean.initForLogedUser(authenticationBean.loggedUser)}" />
+        <f:event type="preRenderView" listener="#{userEditBean.init}" />
+    </f:metadata>
+
+    <ui:define name="breadcrumb">
+        <div class="Container100">
+        <div class="ContainerIndent" style="padding-bottom: 0px;">
+        <p:breadCrumb styleClass="Card ShadowEffect" >
+            <p:menuitem value="Inicio" url="/views/home.xhtml" />
+            <p:menuitem value="Perfil de Usuario" url="#" />
+
+        </p:breadCrumb>
+        </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect ui-fluid">
+                    <h:form id="mainForm">
+
+                        <p:growl showDetail="true" showSummary="true"/>
+
+                        <p:panelGrid columns="1" columnClasses="ui-grid-col-12" layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:messages id="messages" autoUpdate="true" showDetail="true" globalOnly="true"/>
+
+                            <p:outputPanel>
+
+                                <h2 class="BigTopic">Datos Personales</h2>
+
+                                <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
+
+                                    <p:outputLabel for="input-user-username" value="Username" styleClass="Wid20"  style="font-weight: bold"/>
+                                    <p:outputLabel id="input-user-username" value="#{userEditBean.editItem.username}" styleClass="Wid90"/>
+
+                                    <p:outputLabel for="input-user-name" value="Nombre" styleClass="Wid20"  style="font-weight: bold"/>
+                                    <p:outputLabel id="input-user-name" value="#{userEditBean.editItem.name}" styleClass="Wid90" />
+
+                                    <p:outputLabel for="input-user-rut" value="RUT" style="font-weight: bold" styleClass="Wid20 Label" />
+                                    <p:outputLabel id="input-user-rut" value="#{userEditBean.editItem.rut}" styleClass="Wid90" />
+
+                                    <p:outputLabel for="input-user-email" value="Email" style="font-weight: bold" styleClass="Wid20" />
+                                    <p:outputLabel id="input-user-email" value="#{userEditBean.editItem.email}" styleClass="Wid90" />
+
+                                </p:panelGrid>
+
+                            </p:outputPanel>
+
+                            <p:dataTable id="grupos" var="group" value="#{userEditBean.editItem.groups}" emptyMessage="Usuario no tiene Grupos asignados" reflow="true">
+                                <p:columnGroup type="header">
+                                    <p:row>
+                                        <p:column colspan="2" headerText="Grupos"/>
+                                    </p:row>
+                                </p:columnGroup>
+                                <p:column styleClass="BoldGray FontBold">
+                                    #{group.name}
+                                </p:column>
+                                <p:column>
+                                    #{group.description}
+                                </p:column>
+                            </p:dataTable>
+
+                            <p:separator />
+
+                            <p:outputPanel>
+                                <p:panelGrid columns="2" styleClass="Wid100" >
+                                    <f:facet name="header">
+                                        Datos De acceso
+                                    </f:facet>
+                                    <h:outputText value="Fecha Ultimo acceso" style="font-weight: bold"/>
+                                    <h:outputText value="#{userEditBean.editItem.lastLogin}">
+                                        <f:convertDateTime type="date" pattern="dd-MM-yyyy hh:mm"/>
+                                    </h:outputText>
+
+                                    <h:outputText value="Intentos fallidos de ingreso" style="font-weight: bold"/>
+                                    <h:outputText value="#{userEditBean.editItem.failedLoginAttempts}" />
+
+                                    <h:outputText value="Fecha Ultimo cambio de contraseña" style="font-weight: bold"/>
+                                    <h:outputText value="#{userEditBean.editItem.lastPasswordChange}">
+                                        <f:convertDateTime type="date" pattern="dd-MM-yyyy hh:mm"/>
+                                    </h:outputText>
+
+                                    <h:outputText value="Bloqueado" style="font-weight: bold"/>
+                                    <h:outputText value="#{userEditBean.editItem.locked?'Si':'No'}"/>
+
+                                </p:panelGrid>
+                            </p:outputPanel>
+
+                            <p:outputPanel>
+
+                                <p:panelGrid columns="4"  layout="grid" styleClass="ui-panelgrid-blank">
+
+                                    <p:button icon="fa fa-edit" value="Editar" outcome="userProfileEdit" styleClass="ui-priority-primary CyanButton"></p:button>
+
+                                </p:panelGrid>
+                            </p:outputPanel>
+
+                        </p:panelGrid>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

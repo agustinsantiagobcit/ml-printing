@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.Image" required="true"/>
+    <composite:attribute name="index" type="java.lang.String" required="true"/>
+</composite:interface>
+<composite:implementation>
+
+    <div class="TexAlCenter">
+        <h:graphicImage value="data:#{cc.attrs.element.contentType};base64,#{cc.attrs.element.image}" rendered="#{not empty cc.attrs.element.image}"
+                    style="max-width: 500px; max-height: #{ (empty cc.attrs.element.tamanioY)?300:cc.attrs.element.tamanioY}px;"/>
+        <p:graphicImage name="images/no_image.png" library="rio-layout" rendered="#{empty cc.attrs.element.image}" style="width: 105px;border: 3px dashed #ddd;"/>
+    </div>
+
+</composite:implementation>
+</html>

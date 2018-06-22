@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.DynamicTable" required="true" />
+    <composite:attribute name="index" type="java.lang.String" required="true" />
+</composite:interface>
+<composite:implementation>
+
+    <p:outputPanel deferred="true" deferredMode="load" id="panelcilloderefTabla2" style="background-color: #f3f0f0;">
+    <p:dataTable id="editableTable" var="rowElement" rowIndexVar="tableRowNumber"
+                         value="#{cc.attrs.element.rows}"
+                         emptyMessage="Para insertar filas, haga click en el botón +"
+                         styleClass="column_without_paddings two_columns_dt table_element_id in-table"
+                         editable="true"
+                         editMode="cell" saveOnCellBlur="true"
+                         rendered="#{not empty cc.attrs.element.columns and not empty cc.attrs.element.rows}">
+
+        <f:facet name="header">
+            <p:inplace editor="true" styleClass="title_input_inplace">
+                <f:facet name="input">
+                    <p:inputText value="#{cc.attrs.element.title}" />
+                </f:facet>
+                <f:facet name="output">
+                    <h:outputText value="#{cc.attrs.element.title}" />
+                    <h:outputText value="Ingrese un Titulo..." rendered="#{empty cc.attrs.element.title}" />
+                </f:facet>
+            </p:inplace>
+        </f:facet>
+
+        <p:columns var="column" columnIndexVar="tableColumnNumber" value="#{cc.attrs.element.columns}">
+            <f:facet name="header">
+                <p:inplace editor="true">
+                    <p:inputText value="#{column.name}" />
+                </p:inplace>
+                <p:commandButton update="templateForm:tabs:elementsTable" id="delColumnElement2"
+                                 action="#{templateEditBean.deleteDynamicColumn(cc.attrs.element,column)}"
+                                 icon="fa fa-trash" styleClass="RedButton RaisedButton Fright"
+                                 process="@this" partialSubmit="true" style="font-size: 5px !important;">
+                    <p:confirm header="Confirmación" message="¿Estás seguro de eliminar la columna?" icon="ui-icon-alert" />
+                </p:commandButton>
+                <p:tooltip id="tooltipDeleteColumn2" for="delColumnElement2" value="Eliminar Columna" position="top" />
+            </f:facet>
+
+            <p:cellEditor>
+                <f:facet name="input">
+                    <h:inputText value="#{rowElement.cells[tableColumnNumber].texto}" />
+                </f:facet>
+                <f:facet name="output">
+                    <h:outputText value="#{rowElement.cells[tableColumnNumber].texto}" />
+                </f:facet>
+            </p:cellEditor>
+
+        </p:columns>
+
+    </p:dataTable>
+
+
+    <p:commandButton id="addCol2" update="editableTable" styleClass="addRow" action="#{templateEditBean.addDynamicColumn(cc.attrs.element)}" icon="fa fa-plus" value="Agregar columna" label="Agregar columna" iconPos="left" process="@this" />
+
+    </p:outputPanel>
+</composite:implementation>
+</html>

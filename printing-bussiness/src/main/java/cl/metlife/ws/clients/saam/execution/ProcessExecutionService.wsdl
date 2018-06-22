@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ProcessExecutionService" targetNamespace="http://printing.metlife.cl/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://printing.metlife.cl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://printing.metlife.cl/" schemaLocation="ProcessExecutionService_schema1.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://jaxb.dev.java.net/array" schemaLocation="ProcessExecutionService_schema2.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="initProcessResponse">
+    <part name="parameters" element="tns:initProcessResponse">
+    </part>
+  </message>
+  <message name="initProcess">
+    <part name="parameters" element="tns:initProcess">
+    </part>
+  </message>
+  <message name="initProcessWithDataResponse">
+    <part name="parameters" element="tns:initProcessWithDataResponse">
+    </part>
+  </message>
+  <message name="initProcessWithData">
+    <part name="parameters" element="tns:initProcessWithData">
+    </part>
+  </message>
+  <portType name="ProcessExecution">
+    <operation name="initProcess">
+      <input message="tns:initProcess" wsam:Action="http://printing.metlife.cl/ProcessExecution/initProcessRequest">
+    </input>
+      <output message="tns:initProcessResponse" wsam:Action="http://printing.metlife.cl/ProcessExecution/initProcessResponse">
+    </output>
+    </operation>
+    <operation name="initProcessWithData">
+      <input message="tns:initProcessWithData" wsam:Action="http://printing.metlife.cl/ProcessExecution/initProcessWithDataRequest">
+    </input>
+      <output message="tns:initProcessWithDataResponse" wsam:Action="http://printing.metlife.cl/ProcessExecution/initProcessWithDataResponse">
+    </output>
+    </operation>
+  </portType>
+  <binding name="ProcessExecutionPortBinding" type="tns:ProcessExecution">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="initProcess">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="initProcessWithData">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="ProcessExecutionService">
+    <port name="ProcessExecutionPort" binding="tns:ProcessExecutionPortBinding">
+      <soap:address location="http://localhost:9080/saam-services/ProcessExecutionService"/>
+    </port>
+  </service>
+</definitions>

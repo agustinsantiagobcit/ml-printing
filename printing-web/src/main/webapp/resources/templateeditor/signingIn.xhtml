@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.Signature" required="true"/>
+    <composite:attribute name="index" type="java.lang.Integer" required="true"/>
+</composite:interface>
+<composite:implementation>
+
+
+    <p:fileUpload id="image-upload" fileUploadListener="#{cc.attrs.element.handleFileUpload}" mode="advanced"
+                  dragDropSupport="true" auto="true"
+                  label="Subir Imagen" fileLimitMessage="Limite de tamaño 10Mb"
+                  invalidFileMessage="Archivo invalido" uploadLabel="Subir"
+                  sizeLimit="10000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                  oncomplete="PF('inplace_#{cc.attrs.index}').save()"/>
+
+
+    <p:textEditor value="#{cc.attrs.element.name}" height="50"
+                  placeholder="Ingrese aquí el contenido...">
+        <f:facet name="toolbar">
+                 <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                </span>
+        </f:facet>
+    </p:textEditor>
+
+    <p:textEditor value="#{cc.attrs.element.position}" height="50"
+                  placeholder="Ingrese aquí el contenido...">
+        <f:facet name="toolbar">
+                 <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                </span>
+        </f:facet>
+    </p:textEditor>
+
+
+    <p:textEditor value="#{cc.attrs.element.institution}" height="50"
+                  placeholder="Ingrese aquí el contenido...">
+        <f:facet name="toolbar">
+                 <span class="ql-formats">
+                    <button class="ql-bold"></button>
+                    <button class="ql-italic"></button>
+                    <button class="ql-underline"></button>
+                    <button class="ql-strike"></button>
+                </span>
+        </f:facet>
+    </p:textEditor>
+
+</composite:implementation>
+</html>

@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+
+                    <p:breadCrumb>
+                        <p:menuitem value="Categories" url="#" />
+                        <p:menuitem value="Administrador Printing" url="#" />
+                        <p:menuitem value="Carga NN" url="#" />
+                    </p:breadCrumb>
+
+                    <div class="Container100 Responsive100">
+                        <div class="Card ShadowEffect" style="margin-top:20px">
+                            <div class="ContainerIndent">
+                                <h:form enctype="multipart/form-data">
+                                    <p:growl id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+
+                                    <p:panelGrid columns="2">
+                                        <h:outputLabel for="process-input" value="Proceso Printing"/>
+                                        <p:selectOneMenu id="process-input" value="#{nnLoadBean.printingProcessId}" effect="fold" filter="true" filterMatchMode="contains">
+                                            <f:selectItem itemLabel="Seleccionar" itemValue="#{null}" noSelectionOption="true" />
+                                            <f:selectItems value="#{nnLoadBean.allPrintingProcesses}" var="process" itemLabel="#{process.name}" itemValue="#{process.id}"/>
+                                        </p:selectOneMenu>
+                                        <h:outputLabel for="file-input" value="Seleccionar archivo"/>
+                                        <p:fileUpload id="file-input" value="#{nnLoadBean.file}" mode="simple" skinSimple="true" label="Seleccionar"/>
+
+                                        <p:commandButton actionListener="#{nnLoadBean.startLoad}" value="Cargar" ajax="false" styleClass="GreenButton Wid90"/>
+
+                                    </p:panelGrid>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes GreenButton" icon="fa fa-check White" style="float:left"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no RedButton" icon="fa fa-close White" style="float:right"/>
+        </p:confirmDialog>
+
+    </ui:define>
+
+</ui:composition>

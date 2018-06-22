@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.ListElement" required="true" />
+    <composite:attribute name="index" type="java.lang.String" required="true" />
+</composite:interface>
+<composite:implementation>
+
+    <div style="background-color: #f3f0f0;">
+        <div style="width: 100%;padding:7px 0;">
+            <p:outputLabel for="typeList" value="Tipo de lista: "/>
+
+            <p:selectOneMenu id="typeList" value="#{cc.attrs.element.listType}" converter="ListTypeConverter">
+                <f:selectItems var="listType" value="#{templateEditBean.listTypes}" itemLabel="#{listType.name}"  itemValue="#{listType}" >
+                </f:selectItems>
+            </p:selectOneMenu>
+        </div>
+
+
+        <p:dataTable id="numericListTable" var="elementoLista" value="#{cc.attrs.element.items}"
+                 emptyMessage="Para insertar filas, haga click en el botón +" styleClass="table-no-header">
+            <p:ajax event="cellEdit" process="@this" partialSubmit="true"/>
+            <p:column >
+                <p:textEditor value="#{elementoLista.text}" height="50" placeholder="Ingrese el elemento de la lista...">
+                    <f:facet name="toolbar">
+                         <span class="ql-formats">
+                            <button class="ql-bold"></button>
+                            <button class="ql-italic"></button>
+                            <button class="ql-underline"></button>
+                            <button class="ql-strike"></button>
+                        </span>
+                        <span class="ql-formats">
+                            <select class="ql-size"></select>
+                        </span>
+                    </f:facet>
+                </p:textEditor>
+            </p:column>
+
+            <p:column headerText="actions" width="25" >
+                <p:commandButton id="delRowElement2" styleClass="delButton RedButton RaisedButton Fright" update="numericListTable"
+                                 action="#{templateEditBean.deleteElementList(elementoLista, cc.attrs.element)}" icon="fa fa-trash"
+                                 process="@this" partialSubmit="true" style="font-size: 5px !important;">
+                    <p:confirm header="Confirmación" message="¿Estás seguro de eliminar la fila?" icon="ui-icon-alert" />
+                </p:commandButton>
+
+                <p:tooltip id="tooltipDeleteRow2" for="delRowElement2" value="Eliminar fila"
+                           position="top" />
+            </p:column>
+        </p:dataTable>
+
+            <div >
+                <p:commandButton partialSubmit="true" process="@this" id="addListItem" update="numericListTable" action="#{templateEditBean.addElementToList(cc.attrs.element)}"
+                                 icon="fa fa-plus" iconPos="left" styleClass="addRow" value="Agregar fila"/>
+            </div>
+
+    </div>
+</composite:implementation>
+</html>

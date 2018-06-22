@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                process="/WEB-INF/process/process.xhtml"
+>
+
+    <f:metadata>
+        <f:viewParam name="processId" value="#{processEditBean.idPlantilla}"/>
+        <f:event type="preRenderView" listener="#{processEditBean.init}"/>
+    </f:metadata>
+
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <h:form id="processForm" enctype="multipart/form-data">
+
+                    <p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4" layout="grid" styleClass="ui-panelgrid-blank">
+
+                        <p:outputLabel for="input-name" value="Nombre" styleClass="Wid20"  />
+                        <p:inputText id="input-name" value="#{processEditBean.item.name}" styleClass="Wid90" required="true"/>
+                        <p:message id="message-name" for="input-name"  />
+
+                        <p:outputLabel for="input-descripcion" value="Descripcion" styleClass="Wid20"  />
+                        <p:inputText id="input-descripcion" value="#{processEditBean.item.description}" styleClass="Wid90"/>
+                        <p:message  id="message-descripcion" for="input-descripcion"  />
+
+                        <p:outputLabel for="input-policy" value="Poliza" styleClass="Wid20"  />
+                        <p:inputText id="input-policy" value="#{processEditBean.item.policyCode}" styleClass="Wid90"/>
+                        <p:message  id="message-policy" for="input-policy"  />
+
+                        <p:outputLabel for="input-saamProcess" value="Proceso SAAM" styleClass="Wid20"  />
+                        <p:selectOneMenu id="input-saamProcess" value="#{processEditBean.item.saamProcessId}" styleClass="Wid90" >
+                            <f:selectItems value="#{processEditBean.allSaamProcess}" var="saamProcess" itemLabel="#{saamProcess.name}" itemValue="#{saamProcess.id}" />
+                        </p:selectOneMenu>
+                        <p:message  id="message-saamProcess" for="input-saamProcess"  />
+
+                        <p:outputLabel for="input-sponsor" value="Sponsor" styleClass="Wid20"  />
+                        <p:selectOneMenu id="input-sponsor" value="#{processEditBean.item.sponsorId}" styleClass="Wid90" >
+                            <f:selectItems value="#{processEditBean.allSponsors}" var="sponsor" itemLabel="#{sponsor.name}" itemValue="#{sponsor.id}" />
+                        </p:selectOneMenu>
+                        <p:message  id="message-sponsor" for="input-sponsor"  />
+
+                        <p:outputLabel for="input-template" value="Plantilla" styleClass="Wid20"  />
+                        <p:selectOneMenu id="input-template" value="#{processEditBean.item.sponsorId}" styleClass="Wid90" >
+                            <f:selectItems value="#{processEditBean.allSponsors}" var="template" itemLabel="#{template.name}" itemValue="#{template.id}" />
+                        </p:selectOneMenu>
+                        <p:message  id="message-template" for="input-template"  />
+
+
+
+                    </p:panelGrid>
+
+                    <p:commandButton action="#{processEditBean.save}" value="Guardar" icon="fa fa-save" />
+
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

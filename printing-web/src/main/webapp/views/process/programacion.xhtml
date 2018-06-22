@@ -1,0 +1,137 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="processId" value="#{scheduleProcessBean.processId}" />
+        <f:event type="preRenderView" listener="#{scheduleProcessBean.init}" />
+    </f:metadata>
+
+    <ui:define name="content">
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect">
+                    <h:form id="processForm" prependId="false">
+
+
+                        <p:panelGrid title="Semanalmente" columns="3" style="text-align: left">
+                            <f:facet name="header">
+                                Datos de la programacion
+                            </f:facet>
+
+                            <p:outputLabel value="Segundo: " for="secondInput"/>
+                            <p:inputText id="secondInput" value="#{scheduleProcessBean.second}" />
+                            <p:outputPanel>
+                                <p>0 a 59. Por ejemplo: "30".</p>
+                            </p:outputPanel>
+
+                            <p:outputLabel value="Minuto: " for="minuteInput"/>
+                            <p:inputText id="minuteInput" value="#{scheduleProcessBean.minute}" />
+                            <p:outputPanel>
+                                <p>0 a 59. Por ejemplo: "15".</p>
+                            </p:outputPanel>
+
+
+                            <p:outputLabel value="Hora: " for="hourInput"/>
+                            <p:inputText id="hourInput" value="#{scheduleProcessBean.hour}" />
+                            <p:outputPanel>
+                                <p>0 a 23. Por ejemplo: "13".</p>
+                            </p:outputPanel>
+
+
+                            <p:outputLabel value="Dia de la Semana: " for="dayOfWeekInput"/>
+                            <p:inputText id="dayOfWeekInput" value="#{scheduleProcessBean.dayOfWeek}" />
+                            <p:outputPanel>
+                                <p>0 a 7 ( 0 y 7 refieren a Domingo). Por ejemplo: "3".</p>
+                                <p>Sun (Domingo), Mon (Lunes), Tue (Martes), Wed (Miércoles), Thu (Jueves), Fri (Viernes), Sat (Sábado). Por ejemplo: "Mon".</p>
+                            </p:outputPanel>
+
+                            <p:outputLabel value="Dia del Mes: " for="dayOfMonthInput"/>
+                            <p:inputText id="dayOfMonthInput" value="#{scheduleProcessBean.dayOfMonth}" />
+                            <p:outputPanel>
+                                <p>1 a 31. Por ejemplo: "15".</p>
+                                <p>–7 a –1 (un nombre negativo significa la cantidad de día o días antes del final del mes). Por ejemplo: "–3".</p>
+                                <p>Last. Por ejemplo: "Last".</p>
+                                <p>[1st, 2nd, 3rd, 4th, 5th, Last (Último)] [Sun, Mon, Tue, Wed, Thu, Fri, Sat]. Por ejemplo: "2nd Fri".</p>
+                            </p:outputPanel>
+
+                            <p:outputLabel value="Mes: " for="monthInput"/>
+                            <p:inputText id="monthInput" value="#{scheduleProcessBean.month}" />
+                            <p:outputPanel>
+                                <p>1 a 12. Por ejemplo: "7".</p>
+                                <p>Jan (Enero), Feb (Febrero), Mar (Marzo), Apr (Abril), May (Mayo), Jun (Junio), Jul (Julio), Aug (Agosto), Sep (Septiembre), Oct (Octubre), Nov (Noviembre), Dec (Diciembre). Por ejemplo: "July".</p>
+                            </p:outputPanel>
+
+                            <p:outputLabel value="Año: " for="yearInput"/>
+                            <p:inputText id="yearInput" value="#{scheduleProcessBean.year}" />
+                            <p:outputPanel>
+                                <p>Año en formato de 4 dígitos. Por ejemplo: "2011".</p>
+                            </p:outputPanel>
+                        </p:panelGrid>
+
+                        <div style="margin-top:10px">
+                            <p:commandButton id="saveButton" value="Guardar y volver" action="#{scheduleProcessBean.save}" style="margin-top:10px;clear:both"/>
+                        </div>
+
+                    </h:form>
+                    <br/><br/>
+
+                    <p:outputPanel  style="text-align: left" >
+
+                        <h4>Especificación de múltiples valores en expresiones de calendario</h4>
+                        <p>A continuación se describen todas las posibilidades de programación de procesos:.</p>
+
+                        <h5>Uso del "Para todos" (*)</h5>
+                        <p>Asignando el campo con un asterisco (*) indica que incluye todos los posibles valores del atributo.</p>
+                        <p>La siguiente expresión representa cada minuto:</p>
+                        <pre>minuto="*"</pre><p>La siguiente expresión representa todos los días de la semana:</p>
+                        <pre>dayOfWeek="*"</pre>
+
+                        <h5>Especificando una lista de valores</h5>
+                        <p>Para especificar 2 o más valores para un atributo, utiliza una coma (,) para separar los valores.</p>
+                        <p>Los duplicados en una lista serán ignorados.</p>
+                        <p>La siguiente expresion asigna el día Martes y Jueves de la semana:</p>
+                        <pre>dayOfWeek="Tue, Thu"</pre><p>La siguiente expresion representa las 4:00 a.m., cada hora desde las 9:00 a.m. a las 5:00
+                        p.m. usando un rango, y 10:00 p.m.:</p>
+                        <pre>hour="4,9-17,22"</pre>
+
+                        <h5>Especificando un rango de valores</h5>
+                        <p> Utilice un carácter de guion (-) para especificar un rango de valores inclusivo para
+                            un atributo. Los miembros de un rango no pueden ser comodines, listas o intervalos. UN
+                            rango de la forma x-x, es equivalente a la expresión de un solo valor x. UN
+                            rango de la forma x-y donde x es mayor que y es equivalente a
+                            la expresión x- <i> valor máximo </i>, <i> valor mínimo </i> -y. Es decir, la expresión comienza en x, pasa a
+                            el comienzo de los valores permitidos, y continúa hasta y.</p>
+                        <p>La siguiente expresión representa de 9:00 a.m. a 5:00 p.m.:</p>
+                        <pre>hour="9-17"</pre><p>La siguiente expresion representa Viernes a Lunes:</p>
+                        <pre>dayOfWeek="5-1"</pre><p>La siguiente expresión representa el vigésimo quinto día del mes hasta el final
+                        del mes, y el comienzo del mes a la quinta
+                        día del mes:</p>
+                        <pre>dayOfMonth="25-5"</pre><p>Esto es equivalente a la siguiente expresión:</p>
+                        <pre>dayOfMonth="25-Last,1-5"</pre>
+
+                        <h5>Especificando intervalos</h5>
+                        <p>La barra inclinada (/) limita un atributo a un punto de inicio y un
+                            intervalo y se usa para especificar cada N segundos, minutos u horas dentro de
+                            el minuto, hora o día. Para una expresión de la forma x / y, x
+                            representa el punto de partida e y representa el intervalo. El carácter comodín (*) puede ser
+                            utilizado en la posición x de un intervalo y es equivalente a la configuración</p>
+                        <p>Los intervalos se pueden establecer solo para los atributos de segundo, minuto y hora.</p>
+                        <p>La siguiente expresión representa cada 10 minutos dentro de la hora:</p>
+                        <pre>minute="*/10"</pre><p>Es equivalente a:</p>
+                        <pre>minute="0,10,20,30,40,50"</pre><p>La siguiente expresión representa cada 2 horas a partir del mediodía:</p>
+                        <pre>hour="12/2"</pre>
+
+                    </p:outputPanel>
+
+                    <br/><br/>
+                </div>
+            </div>
+        </div>
+        
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/template.xhtml">
+
+
+
+    <ui:define name="content">
+        <style type="text/css">
+            #j_id1797621422_7a20b1b4\3a manageTemplate > div.ui-datatable-header.ui-widget-header.ui-corner-top {
+                background-color: #5b95b187;
+                color: #231f209e;
+                text-shadow: 1px 1px 1px #eef2f7;
+                font-weight: bolder;
+            }
+
+            #j_id1797621422_7a20b1b4\3a manageTemplate\3a j_id1797621422_7a20b11f\3a filter{
+                width: 90%;
+            }
+
+            #j_id1797621422_7a20b1b4\3a manageTemplate\3a j_id1797621422_7a20b136\3a filter{
+                width: 90%;
+            }
+
+        </style>
+
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <p:breadCrumb>
+                    <p:menuitem value="Categories" url="#" />
+                    <p:menuitem value="Mantenedor de plantillas" url="#" />
+                </p:breadCrumb>
+            </div>
+        </div>
+
+
+        <div class="Container100">
+            <div class="ContainerIndent">
+                <div class="Card ShadowEffect">
+                   <h:form>
+                       <p:button id="add" value="Nueva plantilla" title="Crear Plantilla"  styleClass="ui-priority-primary table_top_buttons"  outcome="../gestor/editar" />
+
+                       <p:dataTable id="manageTemplate" var="template" value="#{templateBean.allTemplates}" style="clear:both">
+                           <f:facet name="header">
+                               Plantillas
+                           </f:facet>
+                           <p:column headerText="ID" filterMatchMode="contains" filterBy="#{template.id}" width="100">
+                               <h:outputText value="#{template.id}"/>
+                           </p:column>
+                           <p:column headerText="Nombre" filterMatchMode="contains" filterBy="#{template.name}">
+                               <h:outputText value="#{template.name}"/>
+                           </p:column>
+                           <p:column headerText="Descripción" filterMatchMode="contains" filterBy="#{template.description}">
+                               <h:outputText value="#{template.description}" />
+                           </p:column>
+                           <p:column headerText="Accion" width="130">
+                               <p:button id="edit" icon="fa fa-edit" title="Editar plantilla" outcome="../gestor/editar" style="margin-right: 4px;">
+                                   <f:param name="templateId" value="#{template.id}" />
+                               </p:button>
+                               <p:commandButton id="clone" icon="fa fa-copy" styleClass="button_onlyicon_trash" title="copiar Plantilla" action="#{templateBean.clone(template)}" async="false" style="margin-right:4px">
+                                   <p:confirm header="Confirmación" message="¿Estás seguro de copiar la plantilla?" icon="ui-icon-alert" />
+                               </p:commandButton>
+                               <p:commandButton id="delete" icon="fa fa-trash" styleClass="button_onlyicon_trash" actionListener="#{templateBean.remove(template)}" update="manageTemplate" title="Borrar Plantilla"  style="margin-right:4px">
+                                   <p:confirm header="Confirmación" message="¿Estás seguro de eliminar la plantilla?" icon="ui-icon-alert" />
+                               </p:commandButton>
+
+                               <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                   <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                   <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                               </p:confirmDialog>
+
+                           </p:column>
+                       </p:dataTable>
+
+                   </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

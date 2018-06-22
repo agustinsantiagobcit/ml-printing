@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="ejb" url="file://$PROJECT_DIR$/printing-bussiness" />
+    <file type="ejb" url="file://$PROJECT_DIR$/printing-persistence" />
+    <file type="javaeeApplication" url="file://$PROJECT_DIR$/printing-ear" />
+    <file type="javaeeApplication" url="file://$PROJECT_DIR$/printing-generationservice-ear" />
+    <file type="web" url="file://$PROJECT_DIR$/printing-generationservice-web" />
+    <file type="web" url="file://$PROJECT_DIR$/printing-web" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" default="false" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
+</project>

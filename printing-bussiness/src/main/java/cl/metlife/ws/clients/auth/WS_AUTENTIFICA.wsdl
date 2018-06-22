@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Autentifica_Interno">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ID_Aplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Autentifica_InternoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Autentifica_InternoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ROLES_PERSONA_RUT_APLIC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ID_Aplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ROLES_PERSONA_RUT_APLICResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ROLES_PERSONA_RUT_APLICResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LOGIN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vl_login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="clave" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LOGINResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LOGINResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="check_clave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inrut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="icclave" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="icsession" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="icidioma" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="check_claveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="check_claveResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sp_info_persona">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="inrut" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sp_info_personaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sp_info_personaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Autentifica_InternoSoapIn">
+    <wsdl:part name="parameters" element="tns:Autentifica_Interno" />
+  </wsdl:message>
+  <wsdl:message name="Autentifica_InternoSoapOut">
+    <wsdl:part name="parameters" element="tns:Autentifica_InternoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ROLES_PERSONA_RUT_APLICSoapIn">
+    <wsdl:part name="parameters" element="tns:ROLES_PERSONA_RUT_APLIC" />
+  </wsdl:message>
+  <wsdl:message name="ROLES_PERSONA_RUT_APLICSoapOut">
+    <wsdl:part name="parameters" element="tns:ROLES_PERSONA_RUT_APLICResponse" />
+  </wsdl:message>
+  <wsdl:message name="LOGINSoapIn">
+    <wsdl:part name="parameters" element="tns:LOGIN" />
+  </wsdl:message>
+  <wsdl:message name="LOGINSoapOut">
+    <wsdl:part name="parameters" element="tns:LOGINResponse" />
+  </wsdl:message>
+  <wsdl:message name="check_claveSoapIn">
+    <wsdl:part name="parameters" element="tns:check_clave" />
+  </wsdl:message>
+  <wsdl:message name="check_claveSoapOut">
+    <wsdl:part name="parameters" element="tns:check_claveResponse" />
+  </wsdl:message>
+  <wsdl:message name="sp_info_personaSoapIn">
+    <wsdl:part name="parameters" element="tns:sp_info_persona" />
+  </wsdl:message>
+  <wsdl:message name="sp_info_personaSoapOut">
+    <wsdl:part name="parameters" element="tns:sp_info_personaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Autentifica_InternoHttpGetIn">
+    <wsdl:part name="ID_Aplicacion" type="s:string" />
+    <wsdl:part name="Login" type="s:string" />
+    <wsdl:part name="Clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Autentifica_InternoHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ROLES_PERSONA_RUT_APLICHttpGetIn">
+    <wsdl:part name="ID_Aplicacion" type="s:string" />
+    <wsdl:part name="Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ROLES_PERSONA_RUT_APLICHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="LOGINHttpGetIn">
+    <wsdl:part name="vl_login" type="s:string" />
+    <wsdl:part name="clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LOGINHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="check_claveHttpGetIn">
+    <wsdl:part name="inrut" type="s:string" />
+    <wsdl:part name="icclave" type="s:string" />
+    <wsdl:part name="icsession" type="s:string" />
+    <wsdl:part name="icidioma" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="check_claveHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="sp_info_personaHttpGetIn">
+    <wsdl:part name="inrut" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="sp_info_personaHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="Autentifica_InternoHttpPostIn">
+    <wsdl:part name="ID_Aplicacion" type="s:string" />
+    <wsdl:part name="Login" type="s:string" />
+    <wsdl:part name="Clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Autentifica_InternoHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="ROLES_PERSONA_RUT_APLICHttpPostIn">
+    <wsdl:part name="ID_Aplicacion" type="s:string" />
+    <wsdl:part name="Login" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ROLES_PERSONA_RUT_APLICHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="LOGINHttpPostIn">
+    <wsdl:part name="vl_login" type="s:string" />
+    <wsdl:part name="clave" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LOGINHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="check_claveHttpPostIn">
+    <wsdl:part name="inrut" type="s:string" />
+    <wsdl:part name="icclave" type="s:string" />
+    <wsdl:part name="icsession" type="s:string" />
+    <wsdl:part name="icidioma" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="check_claveHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="sp_info_personaHttpPostIn">
+    <wsdl:part name="inrut" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="sp_info_personaHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="Autentifica_Interno">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un xmldocument]</wsdl:documentation>
+      <wsdl:input message="tns:Autentifica_InternoSoapIn" />
+      <wsdl:output message="tns:Autentifica_InternoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un xmldocument]</wsdl:documentation>
+      <wsdl:input message="tns:ROLES_PERSONA_RUT_APLICSoapIn" />
+      <wsdl:output message="tns:ROLES_PERSONA_RUT_APLICSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un String]</wsdl:documentation>
+      <wsdl:input message="tns:LOGINSoapIn" />
+      <wsdl:output message="tns:LOGINSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un String]</wsdl:documentation>
+      <wsdl:input message="tns:check_claveSoapIn" />
+      <wsdl:output message="tns:check_claveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[Datos persona]</wsdl:documentation>
+      <wsdl:input message="tns:sp_info_personaSoapIn" />
+      <wsdl:output message="tns:sp_info_personaSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpGet">
+    <wsdl:operation name="Autentifica_Interno">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un xmldocument]</wsdl:documentation>
+      <wsdl:input message="tns:Autentifica_InternoHttpGetIn" />
+      <wsdl:output message="tns:Autentifica_InternoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un xmldocument]</wsdl:documentation>
+      <wsdl:input message="tns:ROLES_PERSONA_RUT_APLICHttpGetIn" />
+      <wsdl:output message="tns:ROLES_PERSONA_RUT_APLICHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un String]</wsdl:documentation>
+      <wsdl:input message="tns:LOGINHttpGetIn" />
+      <wsdl:output message="tns:LOGINHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un String]</wsdl:documentation>
+      <wsdl:input message="tns:check_claveHttpGetIn" />
+      <wsdl:output message="tns:check_claveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[Datos persona]</wsdl:documentation>
+      <wsdl:input message="tns:sp_info_personaHttpGetIn" />
+      <wsdl:output message="tns:sp_info_personaHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpPost">
+    <wsdl:operation name="Autentifica_Interno">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un xmldocument]</wsdl:documentation>
+      <wsdl:input message="tns:Autentifica_InternoHttpPostIn" />
+      <wsdl:output message="tns:Autentifica_InternoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un xmldocument]</wsdl:documentation>
+      <wsdl:input message="tns:ROLES_PERSONA_RUT_APLICHttpPostIn" />
+      <wsdl:output message="tns:ROLES_PERSONA_RUT_APLICHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un String]</wsdl:documentation>
+      <wsdl:input message="tns:LOGINHttpPostIn" />
+      <wsdl:output message="tns:LOGINHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[devuelve un String]</wsdl:documentation>
+      <wsdl:input message="tns:check_claveHttpPostIn" />
+      <wsdl:output message="tns:check_claveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">[Datos persona]</wsdl:documentation>
+      <wsdl:input message="tns:sp_info_personaHttpPostIn" />
+      <wsdl:output message="tns:sp_info_personaHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Autentifica_Interno">
+      <soap:operation soapAction="http://tempuri.org/Autentifica_Interno" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <soap:operation soapAction="http://tempuri.org/ROLES_PERSONA_RUT_APLIC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <soap:operation soapAction="http://tempuri.org/LOGIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <soap:operation soapAction="http://tempuri.org/check_clave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <soap:operation soapAction="http://tempuri.org/sp_info_persona" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Autentifica_Interno">
+      <soap12:operation soapAction="http://tempuri.org/Autentifica_Interno" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <soap12:operation soapAction="http://tempuri.org/ROLES_PERSONA_RUT_APLIC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <soap12:operation soapAction="http://tempuri.org/LOGIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <soap12:operation soapAction="http://tempuri.org/check_clave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <soap12:operation soapAction="http://tempuri.org/sp_info_persona" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpGet" type="tns:ServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Autentifica_Interno">
+      <http:operation location="/Autentifica_Interno" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <http:operation location="/ROLES_PERSONA_RUT_APLIC" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <http:operation location="/LOGIN" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <http:operation location="/check_clave" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <http:operation location="/sp_info_persona" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpPost" type="tns:ServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Autentifica_Interno">
+      <http:operation location="/Autentifica_Interno" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ROLES_PERSONA_RUT_APLIC">
+      <http:operation location="/ROLES_PERSONA_RUT_APLIC" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LOGIN">
+      <http:operation location="/LOGIN" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="check_clave">
+      <http:operation location="/check_clave" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sp_info_persona">
+      <http:operation location="/sp_info_persona" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://webdesacp01:302/WS_AUTENTIFICA.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://webdesacp01:302/WS_AUTENTIFICA.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpGet" binding="tns:ServiceHttpGet">
+      <http:address location="http://webdesacp01:302/WS_AUTENTIFICA.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
+      <http:address location="http://webdesacp01:302/WS_AUTENTIFICA.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

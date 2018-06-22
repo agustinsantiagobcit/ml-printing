@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.Caratula"/>
+    <composite:attribute name="index" type="java.lang.String" required="true"/>
+</composite:interface>
+<composite:implementation>
+
+    <p:panelGrid columns="2">
+
+        <h:outputText value="CODIGO SVS DE LA POLIZA"/>
+        <h:outputText value="POLIZA Nº"/>
+
+        <p:inputText value="#{cc.attrs.element.codigoSVSPoliza}" placeholder="CODIGO SVS DE LA POLIZA"/>
+        <p:inputText value="#{cc.attrs.element.numPoliza}" placeholder="POLIZA Nº"/>
+
+
+        <h:outputText value="CONTRATANTE"/>
+        <h:outputText value="RUT"/>
+
+        <p:inputText value="#{cc.attrs.element.contratante}" placeholder="CONTRATANTE"/>
+        <p:inputText value="#{cc.attrs.element.rutContratante}" placeholder="RUT"/>
+
+        <h:outputText value="ASEGURADO"/>
+        <h:outputText value="RUT"/>
+
+        <p:inputText value="#{cc.attrs.element.asegurado}" placeholder="ASEGURADO"/>
+        <p:inputText value="#{cc.attrs.element.rutAsegurado}" placeholder="RUT"/>
+
+        <h:outputText value="BENEFICIARIO"/>
+        <h:outputText value="RUT"/>
+
+        <p:inputText value="#{cc.attrs.element.beneficiario}" placeholder="BENEFICIARIO"/>
+        <p:inputText value="#{cc.attrs.element.rutBeneficiario}" placeholder="RUT"/>
+    </p:panelGrid>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Tipo De Riesgo Asegurado"/>
+                <p:selectOneRadio value="#{cc.attrs.element.tipoRiesgoAsegurado}" layout="pageDirection" columns="1" id="tipoPoliza">
+                    <f:selectItem itemLabel="Póliza con cobertura general de gasos médicos"
+                                  itemValue="1"/>
+                    <f:selectItem itemLabel="Póliza con cobertura de gastos médicos para enfermedades específicas"
+                                  itemValue="2"/>
+                    <f:selectItem itemLabel="Póliza con cobertura complementaria de gastos médicos"
+                                  itemValue="3"/>
+                    <f:selectItem itemLabel="Póliza con cobertura catastrófica"
+                                  itemValue="4"/>
+                </p:selectOneRadio>
+            </p:column>
+        </p:row>
+    </p:panelGrid>
+
+    <hr/>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Póliza"/>
+                <p:selectOneRadio value="#{cc.attrs.element.poliza}" layout="grid" columns="1" id="poliza">
+                    <f:selectItem itemLabel="Individual"
+                                  itemValue="Individual"/>
+                    <f:selectItem itemLabel="Colectiva"
+                                  itemValue="Colectiva"/>
+                </p:selectOneRadio>
+            </p:column>
+
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Vigencia"/>
+                <p:inputText value="#{cc.attrs.element.vigenciaInicio}" id="vigenciaInicio"
+                            placeholder="Vigencia Inicio">
+                </p:inputText>
+                <p:inputText value="#{cc.attrs.element.vigenciaTermino}" id="vigenciaTermino"
+                            placeholder="Vigencia Termino">
+                </p:inputText>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Renovación"/>
+                <p:selectOneRadio value="#{cc.attrs.element.renovacionAutomatica}" layout="grid" columns="1" label="Renovación Automática" id="renovacionAutomatica">
+                    <f:selectItem itemLabel="Póliza de plazo indefinido sin condiciones"
+                                  itemValue="1"/>
+                    <f:selectItem itemLabel="Póliza de plazo indefinido condicionada"
+                                  itemValue="2"/>
+                    <f:selectItem itemLabel="Póliza de plazo indefinido (condicionada o no) con término anticipado y renovación no garantizada"
+                                  itemValue="3"/>
+                    <f:selectItem itemLabel="Póliza de plazo limitado y renovable con condiciones"
+                                  itemValue="4"/>
+                    <f:selectItem itemLabel="Póliza de plazo limitado simple"
+                                  itemValue="5"/>
+                </p:selectOneRadio>
+            </p:column>
+        </p:row>
+
+    </p:panelGrid>
+
+    <hr/>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Prima Monto"/>
+                <p:inputText value="#{cc.attrs.element.prima}" placeholder="Prima Monto"></p:inputText>
+            </p:column>
+        </p:row>
+    </p:panelGrid>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Moneda"/>
+                <p:selectOneRadio value="#{cc.attrs.element.moneda}" layout="grid" columns="1" id="moneda">
+                    <f:selectItem itemLabel="UF"
+                                  itemValue="UF"/>
+                    <f:selectItem itemLabel="Pesos"
+                                  itemValue="Pesos"/>
+                    <f:selectItem itemLabel="Otra"
+                                  itemValue="Otra"/>
+                </p:selectOneRadio>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Período de pago"/>
+                <p:selectOneRadio value="#{cc.attrs.element.periodoPago}" layout="grid" columns="1" id="periodoPago">
+                    <f:selectItem itemLabel="Anual"
+                                  itemValue="Anual"/>
+                    <f:selectItem itemLabel="Mensual"
+                                  itemValue="Mensual"/>
+                    <f:selectItem itemLabel="Otro"
+                                  itemValue="Otro"/>
+                </p:selectOneRadio>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Condiciones"/>
+                <p:selectOneRadio value="#{cc.attrs.element.condiciones}" layout="grid" columns="1" id="condiciones">
+                    <f:selectItem itemLabel="Fija"
+                                  itemValue="Fija"/>
+                    <f:selectItem itemLabel="Ajustable Según Contrato"
+                                  itemValue="Ajustable"/>
+                </p:selectOneRadio>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Comisión Total Corredor"/>
+                <p:panelGrid columns="2">
+                    <h:outputText value="Monto "/>
+                    <p:inputText placeholder="monto comisión" value="#{cc.attrs.element.comisionTotalCorrectoMonto}"/>
+
+                    <h:outputText value="No hay comisión"/>
+                    <p:selectBooleanCheckbox  value="#{cc.attrs.element.corredorNoHayComision}" />
+
+                </p:panelGrid>
+
+            </p:column>
+        </p:row>
+
+    </p:panelGrid>
+
+    <hr/>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Reglas Sobre Preexistencia"/>
+                <p:selectOneRadio value="#{cc.attrs.element.reglasPreexistencia}" layout="grid" columns="1" id="Beneficios">
+                    <f:selectItem itemLabel="Póliza sin exclusión de enfermedades preexistentes"
+                                  itemValue="1"/>
+                    <f:selectItem itemLabel="Póliza con exclusión específica de enfermedades preexistentes"
+                                  itemValue="2"/>
+                    <f:selectItem itemLabel="Póliza con exclusión general de enfermedades preexistentes"
+                                  itemValue="3"/>
+
+                </p:selectOneRadio>
+            </p:column>
+
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART.CG"/>
+                <p:panelGrid columns="1">
+                    <p:inputText value="#{cc.attrs.element.artCG1}"/>
+                    <p:inputText value="#{cc.attrs.element.artCG2}"/>
+                    <p:inputText value="#{cc.attrs.element.artCG3}"/>
+                </p:panelGrid>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART. CP"/>
+                <p:panelGrid columns="1">
+                    <p:inputText value="#{cc.attrs.element.artCP1}"/>
+                    <p:inputText value="#{cc.attrs.element.artCP2}"/>
+                    <p:inputText value="#{cc.attrs.element.artCP3}"/>
+                </p:panelGrid>
+            </p:column>
+        </p:row>
+
+    </p:panelGrid>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Condiciones especiales de asegurabilidad"/>
+                <p:selectOneRadio value="#{cc.attrs.element.condEspAsegurabilidad}" layout="grid" columns="1" id="condicionesEspeciales">
+                    <f:selectItem itemLabel="Si"
+                                  itemValue="Si"/>
+                    <f:selectItem itemLabel="No"
+                                  itemValue="No"/>
+                </p:selectOneRadio>
+            </p:column>
+
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART.CG"/>
+                <p:panelGrid columns="1">
+                    <p:inputText value="#{cc.attrs.element.artCG4}"/>
+                    <p:inputText value="#{cc.attrs.element.artCG5}"/>
+                </p:panelGrid>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART. CP"/>
+                <p:panelGrid columns="1">
+                    <p:inputText value="#{cc.attrs.element.artCP4}"/>
+                    <p:inputText value="#{cc.attrs.element.artCP5}"/>
+                </p:panelGrid>
+            </p:column>
+        </p:row>
+
+    </p:panelGrid>
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Periodo de carencia"/>
+                <p:inputText value="#{cc.attrs.element.periodoCarencia}"/>
+            </p:column>
+
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART.CG"/>
+                <p:inputText value="#{cc.attrs.element.artCG6}"/>
+
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART. CP"/>
+                <p:inputText value="#{cc.attrs.element.artCP6}"/>
+            </p:column>
+        </p:row>
+
+    </p:panelGrid>
+
+    <p:panelGrid>
+        <p:row>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="Exclusiones ART. CG"/>
+                <p:selectOneRadio value="#{cc.attrs.element.exclusionesArtCG}" layout="grid" columns="1" id="exclusionesARTCG">
+                    <f:selectItem itemLabel="Si"
+                                  itemValue="Si"/>
+                    <f:selectItem itemLabel="No"
+                                  itemValue="No"/>
+                </p:selectOneRadio>
+            </p:column>
+
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART.CG"/>
+                <p:panelGrid columns="1">
+                    <p:inputText value="#{cc.attrs.element.artCG7}"/>
+                    <p:inputText value="#{cc.attrs.element.artCG8}"/>
+                </p:panelGrid>
+            </p:column>
+            <p:column style="font-weight: bold;">
+                <h:outputText value="ART. CP"/>
+                <p:panelGrid columns="1">
+                    <p:inputText value="#{cc.attrs.element.artCP7}"/>
+                    <p:inputText value="#{cc.attrs.element.artCP8}"/>
+                </p:panelGrid>
+            </p:column>
+        </p:row>
+
+    </p:panelGrid>
+
+    <hr/>
+
+
+    <p:panelGrid >
+
+        <p:row>
+            <p:column colspan="3" style="font-weight: bold;">
+                <h:outputText value="Sistema de notificación"/>
+                <p:selectOneRadio value="#{cc.attrs.element.notificacion}" layout="grid" columns="1" id="notificacion">
+                    <f:selectItem itemLabel="e-mail al correo electrónico"
+                                  itemValue="e-mail"/>
+                    <f:selectItem itemLabel="Carta a la siguiente dirección"
+                                  itemValue="Carta"/>
+                    <f:selectItem itemLabel="Otro"
+                                  itemValue="Otro"/>
+                </p:selectOneRadio>
+            </p:column>
+            <p:column>
+                <p:inputText value="#{cc.attrs.element.notificacion1}"/>
+                <p:inputText value="#{cc.attrs.element.notificacion2}"/>
+                <p:inputText value="#{cc.attrs.element.notificacion3}"/>
+            </p:column>
+        </p:row>
+    </p:panelGrid>
+
+</composite:implementation>
+</html>

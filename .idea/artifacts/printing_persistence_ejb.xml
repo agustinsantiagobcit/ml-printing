@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="printing-persistence:ejb">
+    <output-path>$PROJECT_DIR$/printing-persistence/target</output-path>
+    <root id="archive" name="printing-persistence-1.0.jar">
+      <element id="artifact" artifact-name="printing-persistence:ejb exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:templateeditor="http://java.sun.com/jsf/composite/templateeditor"
+      xmlns:p="http://primefaces.org/ui">
+
+<composite:interface>
+    <composite:attribute name="element" type="cl.metlife.saam.cl.blueprintsit.framework.domain.templates.Signature" required="true"/>
+    <composite:attribute name="index" type="java.lang.Integer" required="true"/>
+</composite:interface>
+<composite:implementation>
+
+    <div class="TexAlCenter">
+        <h:graphicImage alt="Firma" value="data:#{cc.attrs.element.contentType};base64,#{cc.attrs.element.image}" style="max-width: 300px; max-height: 150px;" rendered="#{not empty cc.attrs.element.image}"/>
+        <p:graphicImage name="images/no_image.png" library="rio-layout" rendered="#{empty cc.attrs.element.image}" style="width: 105px;border: 3px dashed #ddd;"/>
+        <br />
+        <h:outputText value="#{templateEditBean.removeP(cc.attrs.element.name)}" rendered="#{not empty cc.attrs.element.name}" escape="false" />
+        <h:outputText value="Ingrese nombre.."  rendered="#{empty cc.attrs.element.name}" />
+        <br />
+        <h:outputText value="#{templateEditBean.removeP(cc.attrs.element.position)}" rendered="#{not empty cc.attrs.element.position}" escape="false" />
+        <h:outputText value="Ingrese cargo.."  rendered="#{empty cc.attrs.element.position}" />
+        <br />
+        <h:outputText value="#{templateEditBean.removeP(cc.attrs.element.institution)}" rendered="#{not empty cc.attrs.element.institution}" escape="false" />
+        <h:outputText value="Ingrese institución.."  rendered="#{empty cc.attrs.element.institution}" />
+    </div>
+
+
+</composite:implementation>
+</html>

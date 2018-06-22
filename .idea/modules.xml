@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/printing.iml" filepath="$PROJECT_DIR$/printing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-bussiness/printing-bussiness.iml" filepath="$PROJECT_DIR$/printing-bussiness/printing-bussiness.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-domain/printing-domain.iml" filepath="$PROJECT_DIR$/printing-domain/printing-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-ear/printing-ear.iml" filepath="$PROJECT_DIR$/printing-ear/printing-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-generationservice-ear/printing-generationservice-ear.iml" filepath="$PROJECT_DIR$/printing-generationservice-ear/printing-generationservice-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-generationservice-web/printing-generationservice-web.iml" filepath="$PROJECT_DIR$/printing-generationservice-web/printing-generationservice-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-persistence/printing-persistence.iml" filepath="$PROJECT_DIR$/printing-persistence/printing-persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/printing-web/printing-web.iml" filepath="$PROJECT_DIR$/printing-web/printing-web.iml" />
+    </modules>
+  </component>
+</project>
